@@ -1,0 +1,31 @@
+.home-wrapper{
+	position: relative;
+	height: 100vh;
+	background-size: cover;
+	background-position: center;
+}
+.home-wrapper .inner{
+	position: absolute;
+	width: 500px;
+	top: 50%; left: 150px;
+	transform: translateY(-50%);
+	color: #fff;
+}
+.home-wrapper h3{
+	background: #ec1f48;
+	display: inline-block;
+	text-transform: uppercase;
+	padding: 5px 10px;
+	font-size: 12px;
+}
+.home-wrapper h1{
+	text-transform: uppercase;
+	font-weight: 700;
+	font-size: 60px;
+	line-height: 68px;
+	margin: 20px 0 35px 0;
+}
+.home-wrapper p{
+	font-size: 24px;
+	font-weight: 400;
+}

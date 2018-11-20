@@ -1,0 +1,25 @@
+footer{
+	position: absolute;
+	right: 0; bottom: 0;
+	z-index: 2;
+}
+
+footer a{
+	color: #fff;
+	display: inline-block;
+	padding: 30px 40px;
+	background: #111619;
+	text-transform: uppercase;
+}
+footer a:hover{
+	background: #fff;
+	color: #111;
+}
+footer a:last-child{
+	color: #111;
+	background: #fff;
+}
+footer a:last-child:hover{
+	background: #ec1f48;
+	color: #fff;
+}
