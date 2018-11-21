@@ -30,3 +30,28 @@ a{
 	text-decoration: none;
 	transition: all .3s ease;
 }
+.main-nav{
+	position: absolute;
+	right: 0; bottom: 0;
+	z-index: 2;
+}
+
+.main-nav a{
+	color: #fff;
+	display: inline-block;
+	padding: 30px 40px;
+	background: #111619;
+	text-transform: uppercase;
+}
+.main-nav a:hover{
+	background: #fff;
+	color: #111;
+}
+.main-nav a:last-child{
+	color: #111;
+	background: #fff;
+}
+.main-nav a:last-child:hover{
+	background: #ec1f48;
+	color: #fff;
+}
