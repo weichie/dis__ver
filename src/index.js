@@ -4,24 +4,28 @@ import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-ro
 
 import './index.css';
 import Home from './components/Home/Home';
+import About from './components/About/About';
 
 const AppRouter = () => (
   <Router>
     <div className="app">
       <nav className="main-nav">
-      	<Link className="dark-link" to="/map/">Home</Link>
-      	<Link className="dark-link" to="/destinations/">Destinations</Link>
-			<Link className="dark-link" to="/about/">About</Link>
+      	<Link className="dark-link" to="/">Home</Link>
+      	<Link className="dark-link" to="/map/">Destinations</Link>
+			<Link className="dark-link" to="/about">About</Link>
 			<Link to="/discover/">Discover</Link>
       </nav>
 
-      <Route path="/" exact component={Home} />
-      <Route component={NoMatch} />
+		<Switch>
+			<Route path="/" exact component={Home} />
+			<Route path="/about" component={About} />
+			<Route component={NoMatch} />
+		</Switch>
     </div>
   </Router>
 );
 
-function NoMatch({ location }) {
+function NoMatch({location}){
 	return(
 		<div>
 			No match for <code>{location.pathname}</code>

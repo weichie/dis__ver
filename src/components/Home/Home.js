@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './Home.css';
+import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
 
 class Home extends React.Component{
 	render(){
@@ -14,6 +15,7 @@ class Home extends React.Component{
 					<p>
 						I lived in New York for 1.5 years and made a list of my personal gems for you to discover! Please keep in mind that this is my personal list, and that I didn't visited every place in the city.
 					</p>
+					<Link to="/About/">Discover</Link>
 				</div>
 			</div>
 		);
