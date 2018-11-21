@@ -1,28 +1,33 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 import './index.css';
-import Home from './components/Home/Home';
-import About from './components/About/About';
+
+import Home 			from './components/Home/Home';
+import About 			from './components/About/About';
+import Discover 		from './components/Discover/Discover';
+import Destination 	from './components/Destination/Destination';
 
 const AppRouter = () => (
-  <Router>
-    <div className="app">
-      <nav className="main-nav">
-      	<Link className="dark-link" to="/">Home</Link>
-      	<Link className="dark-link" to="/map/">Destinations</Link>
-			<Link className="dark-link" to="/about">About</Link>
-			<Link to="/discover/">Discover</Link>
-      </nav>
+	<Router>
+		<div className="app">
+			<nav className="main-nav">
+				<Link className="dark-link" to="/">Home</Link>
+				<Link className="dark-link" to="/destinations/">Destination</Link>
+				<Link className="dark-link" to="/about">About</Link>
+				<Link to="/discover/">Discover</Link>
+			</nav>
 
-		<Switch>
-			<Route path="/" exact component={Home} />
-			<Route path="/about" component={About} />
-			<Route component={NoMatch} />
-		</Switch>
-    </div>
-  </Router>
+			<Switch>
+				<Route path="/" exact component={Home} />
+				<Route path="/destinations" component={Destination} />
+				<Route path="/about" component={About} />
+				<Route path="/discover" component={Discover} />
+				<Route component={NoMatch} />
+			</Switch>
+		</div>
+	</Router>
 );
 
 function NoMatch({location}){

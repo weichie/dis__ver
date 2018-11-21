@@ -7,7 +7,7 @@ class About extends React.Component{
 	render(){
 		return(
 			<div className="about-wrapper">
-				ABOUT PAGE
+				About Wrapper
 			</div>
 		);
 	}
