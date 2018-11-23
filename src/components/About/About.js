@@ -20,10 +20,10 @@ const About = () => (
 					During the past summer I followed a React Pro Intense course to learn myself some React best practices. I created this sideproject as test for myself to see what I can build using React.
 				</p>
 				<ul className="social-list">
-					<li><a href="https://www.instagram.com/weichiie/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a></li>
-					<li><a href="https://www.linkedin.com/in/bobweichler/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a></li>
-					<li><a href="https://github.com/weichie" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a></li>
-					<li><a href="https://awards.weichieprojects.com/"><i class="fas fa-trophy"></i></a></li>
+					<li><a href="https://www.instagram.com/weichiie/" target="_blank" rel="noopener noreferrer"><i className="fab fa-instagram"></i></a></li>
+					<li><a href="https://www.linkedin.com/in/bobweichler/" target="_blank" rel="noopener noreferrer"><i className="fab fa-linkedin-in"></i></a></li>
+					<li><a href="https://github.com/weichie" target="_blank" rel="noopener noreferrer"><i className="fab fa-github"></i></a></li>
+					<li><a href="https://awards.weichieprojects.com/"><i className="fas fa-trophy"></i></a></li>
 				</ul>
 			</div>
 		</div>

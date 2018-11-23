@@ -1,0 +1,68 @@
+.sidenav{
+	position: absolute;
+	top: 50%; left: 25px;
+	transform: translateY(-50%);
+}
+.sidenav ul{
+	list-style-type: none;
+}
+
+.sidenav li 					{margin-bottom: 50px;}
+.sidenav li:last-child 		{margin-bottom: 0;}
+
+.sidenav a{
+	color: #fff;
+	font-weight: 700;
+	position: relative;
+	display: block;
+	width: 50px;
+	height: 50px;
+}
+.sidenav a:before{
+	content: '';
+	position: absolute;
+	left: 50%; top: 50%;
+	height: 100px; width: 1px;
+	background: #fff;
+	transform: translateX(-50%);
+}
+.sidenav li:last-child a:before{content: none;}
+.sidenav span.dot{
+	background: #fff;
+	position: absolute;
+	top: 50%; left: 50%;
+	transform: translate(-50%,-50%);
+	display: block;
+	height: 5px; width: 5px;
+	border-radius: 50%;	
+	transition: all .3s ease;
+}
+.sidenav span.dot em{
+	position: absolute;
+	top: 50%; left: 50%;
+	transform: translate(-50%,-50%);
+	font-size: 12px;
+	opacity: 0;
+	transition: all .3s ease;
+}
+.sidenav span.city-name{
+	width: 100px;
+	position: absolute;
+	top: 50%; left: 20px;
+	opacity: 0;
+	transform: translate(0,-50%);
+	transition: all .3s ease;
+}
+.sidenav a:hover span.dot,
+.sidenav li.active span.dot{
+	width: 20px; height: 20px;
+	background: #354f72;
+}
+.sidenav a:hover span.dot em,
+.sidenav li.active span.dot em{
+	opacity: 1;
+}
+.sidenav a:hover span.city-name{
+	opacity: 1;
+	transform: translate(35px, -50%);	
+}
