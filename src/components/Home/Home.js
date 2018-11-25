@@ -16,7 +16,7 @@ class Home extends React.Component{
 					<p>
 						I lived in New York for 1.5 years and made a list of my personal gems for you to discover! Please keep in mind that this is my personal list, and that I didn't visited every place in the city.
 					</p>
-					<Link className="discover-link" to="/About/">
+					<Link className="discover-link" to="/discover/">
 						Start Discovering 
 						<span></span>
 					</Link>

@@ -3,6 +3,8 @@ import React from 'react';
 import './Discover.css';
 
 import Sidenav from './Sidenav/Sidenav';
+import Main from './Main/Main';
+
 import manhattan_bg from'./manhattan_bg.jpg';
 import brooklyn_bg from'./brooklyn_bg.jpg';
 import queens_bg from'./queens_bg.jpg';
@@ -34,7 +36,7 @@ var neighborhoods = [{
 	cover: bronx_bg,
 	name: 'The Bronx',
 	info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi natus, optio hic autem dolore quod delectus cum corrupti commodi. Voluptate reprehenderit ratione dignissimos perspiciatis a nostrum consequuntur illo pariatur magnam.'
-}]
+}];
 
 class Discover extends React.Component{
 	constructor(props){
@@ -42,7 +44,7 @@ class Discover extends React.Component{
 		this.state = {
 			neighborhoods: neighborhoods,
 			currentCity: 1,
-			currentCover: 'https://images.unsplash.com/photo-1529218402470-5dec8fea0761?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=49d0fac0740352b13fac2117184acbc2&auto=format&fit=crop&w=3356&q=80'
+			currentCover: manhattan_bg
 		}
 		this.updateCurrent = this.updateCurrent.bind(this);
 	}
@@ -62,6 +64,10 @@ class Discover extends React.Component{
 					cities={neighborhoods} 
 					current={this.state.currentCity} 
 					currentHandler={this.updateCurrent} 
+				/>
+				<Main 
+					cities={neighborhoods}
+					current={this.state.currentCity}
 				/>
 			</div>
 		);
