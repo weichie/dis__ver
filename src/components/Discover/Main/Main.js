@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter as Route, Link } from "react-router-dom";
 
 import './Main.css';
 import img_soupbg from'./covers/soupnbg.jpg';
@@ -14,56 +15,61 @@ var gems = [
 		city_id: 1,
 		name: 'Soup & Burger',
 		cover: img_soupbg,
-		location: 'East Village'
+		location: 'East Village',
+		slug: 'soup-and-burger'
 	},{
 		id: 2,
 		city_id: 1,
 		name: 'Blockheads',
 		cover: img_blockheadsbg,
-		location: 'East Village'
+		location: 'East Village',
+		slug: 'blockheads'
 	},{
 		id: 3,
 		city_id: 1,
 		name: 'Intermezzo',
 		cover: img_intermezzo,
-		location: 'Chelsea'
+		location: 'Chelsea',
+		slug: 'intermezzo'
 	},{
 		id: 4,
 		city_id: 1,
 		name: 'Wonton Noodle Garden',
 		cover: img_wonton,
-		location: 'Chinatown'
+		location: 'Chinatown',
+		slug: 'wonton-noodle-garden'
 	},{
 		id: 5,
 		city_id: 1,
 		name: 'Brother Jimmy\'s BBQ',
 		cover: img_jimmys,
-		location: 'Hells Kitchen'
+		location: 'Hells Kitchen',
+		slug: 'brother-jimmys-bbq'
 	},{
 		id: 6,
 		city_id: 2,
 		name: 'Roberta\'s Pizza',
 		cover: img_robertas,
-		location: 'East Village'
+		location: 'East Village',
+		slug: 'robertas-pizza'
 	}
 ];
 
 class Main extends React.Component{
-	constructor(props){
-		super(props);
-	}
 	render(){
 		const current_city = this.props.cities[this.props.current - 1];
 		const restos = gems.map(resto => {
-			return (resto.city_id === this.props.current) ?
-				<li key={resto.id} style={{backgroundImage: `url(${resto.cover})`}}>
-					<div className="content-panel">
-						<small>{resto.location}</small>
-						<strong>{resto.name}</strong>
-					</div>
-					<div className="bottom-gradient"></div>
+			if (resto.city_id === this.props.current) {
+				return <li key={resto.id} style={{backgroundImage: `url(${resto.cover})`}}>
+					<Link to={`/resto/${resto.slug}`}>
+						<div className="content-panel">
+							<small>{resto.location}</small>
+							<strong>{resto.name}</strong>
+						</div>
+						<div className="bottom-gradient"></div>
+					</Link>
 				</li>
-			: '';
+			}
 		});
 
 		return(

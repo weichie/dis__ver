@@ -54,7 +54,11 @@ ul.resto-list li{
 	flex: 0 0 auto;
 }
 ul.resto-list li:hover{
-	transform: scale(1.05);
+	transform: scale(1.1);
+}
+ul.resto-list li a{
+	display: block;
+	height: 100%;
 }
 .bottom-gradient{
 	position: absolute;
