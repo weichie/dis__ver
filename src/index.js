@@ -9,6 +9,7 @@ import About 			from './components/About/About';
 import Discover 		from './components/Discover/Discover';
 import Destination 	from './components/Destination/Destination';
 import Resto 			from './components/Resto/Resto';
+import AddCity 		from './components/AddCity/AddCity';
 
 const AppRouter = () => (
 	<Router>
@@ -26,6 +27,7 @@ const AppRouter = () => (
 				<Route path="/about" component={About} />
 				<Route path="/discover" component={Discover} />
 				<Route path="/resto" component={Resto} />
+				<Route path="/add-city" component={AddCity} />
 				<Route component={NoMatch} />
 			</Switch>
 		</div>
