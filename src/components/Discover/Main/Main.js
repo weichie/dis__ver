@@ -6,44 +6,47 @@ import img_blockheadsbg from'./covers/blockheadsbg.jpg';
 import img_robertas from './covers/robertasbg.jpg';
 import img_intermezzo from './covers/intermezzobg.jpg';
 import img_wonton from './covers/wontonbg.jpg';
+import img_jimmys from './covers/jimmysbbq.jpg';
 
-var gems = [{
-	id: 1,
-	city_id: 1,
-	name: 'Soup & Burger',
-	cover: img_soupbg,
-	location: 'East Village'
-},{
-	id: 2,
-	city_id: 1,
-	name: 'Blockheads',
-	cover: img_blockheadsbg,
-	location: 'East Village'
-},{
-	id: 3,
-	city_id: 1,
-	name: 'Intermezzo',
-	cover: img_intermezzo,
-	location: 'Chelsea'
-},{
-	id: 4,
-	city_id: 1,
-	name: 'Wonton Noodle Garden',
-	cover: img_wonton,
-	location: 'Chinatown'
-},{
-	id: 5,
-	city_id: 1,
-	name: 'Brother Jimmy\'s BBQ',
-	cover: '',
-	location: 'Hells Kitchen'
-},{
-	id: 6,
-	city_id: 2,
-	name: 'Roberta\'s Pizza',
-	cover: img_robertas,
-	location: 'East Village'
-}];
+var gems = [
+	{
+		id: 1,
+		city_id: 1,
+		name: 'Soup & Burger',
+		cover: img_soupbg,
+		location: 'East Village'
+	},{
+		id: 2,
+		city_id: 1,
+		name: 'Blockheads',
+		cover: img_blockheadsbg,
+		location: 'East Village'
+	},{
+		id: 3,
+		city_id: 1,
+		name: 'Intermezzo',
+		cover: img_intermezzo,
+		location: 'Chelsea'
+	},{
+		id: 4,
+		city_id: 1,
+		name: 'Wonton Noodle Garden',
+		cover: img_wonton,
+		location: 'Chinatown'
+	},{
+		id: 5,
+		city_id: 1,
+		name: 'Brother Jimmy\'s BBQ',
+		cover: img_jimmys,
+		location: 'Hells Kitchen'
+	},{
+		id: 6,
+		city_id: 2,
+		name: 'Roberta\'s Pizza',
+		cover: img_robertas,
+		location: 'East Village'
+	}
+];
 
 class Main extends React.Component{
 	constructor(props){
@@ -81,3 +84,9 @@ class Main extends React.Component{
 }
 
 export default Main;
+
+// <div className="discover--list">
+// 	<ul className="resto-list">
+// 		{restos}
+// 	</ul>
+// </div>
