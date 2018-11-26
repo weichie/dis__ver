@@ -8,6 +8,7 @@ import Home 			from './components/Home/Home';
 import About 			from './components/About/About';
 import Discover 		from './components/Discover/Discover';
 import Destination 	from './components/Destination/Destination';
+import Resto 			from './components/Resto/Resto';
 
 const AppRouter = () => (
 	<Router>
@@ -24,6 +25,7 @@ const AppRouter = () => (
 				<Route path="/destinations" component={Destination} />
 				<Route path="/about" component={About} />
 				<Route path="/discover" component={Discover} />
+				<Route path="/resto" component={Resto} />
 				<Route component={NoMatch} />
 			</Switch>
 		</div>

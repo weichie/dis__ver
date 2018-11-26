@@ -16,42 +16,48 @@ var gems = [
 		name: 'Soup & Burger',
 		cover: img_soupbg,
 		location: 'East Village',
-		slug: 'soup-and-burger'
+		slug: 'soup-and-burger',
+		type: 'Diner, American'
 	},{
 		id: 2,
 		city_id: 1,
 		name: 'Blockheads',
 		cover: img_blockheadsbg,
 		location: 'East Village',
-		slug: 'blockheads'
+		slug: 'blockheads',
+		type: 'Mexican, Cocktails'
 	},{
 		id: 3,
 		city_id: 1,
 		name: 'Intermezzo',
 		cover: img_intermezzo,
 		location: 'Chelsea',
-		slug: 'intermezzo'
+		slug: 'intermezzo',
+		type: 'Italian'
 	},{
 		id: 4,
 		city_id: 1,
 		name: 'Wonton Noodle Garden',
 		cover: img_wonton,
 		location: 'Chinatown',
-		slug: 'wonton-noodle-garden'
+		slug: 'wonton-noodle-garden',
+		type: 'Chinese'
 	},{
 		id: 5,
 		city_id: 1,
 		name: 'Brother Jimmy\'s BBQ',
 		cover: img_jimmys,
 		location: 'Hells Kitchen',
-		slug: 'brother-jimmys-bbq'
+		slug: 'brother-jimmys-bbq',
+		type: 'American, BBQ'
 	},{
 		id: 6,
 		city_id: 2,
 		name: 'Roberta\'s Pizza',
 		cover: img_robertas,
 		location: 'East Village',
-		slug: 'robertas-pizza'
+		slug: 'robertas-pizza',
+		type: 'Italian, pizza'
 	}
 ];
 
@@ -61,7 +67,11 @@ class Main extends React.Component{
 		const restos = gems.map(resto => {
 			if (resto.city_id === this.props.current) {
 				return <li key={resto.id} style={{backgroundImage: `url(${resto.cover})`}}>
-					<Link to={`/resto/${resto.slug}`}>
+					<Link 
+						to={{
+							pathname: '/resto/' + resto.slug, 
+							state: { current_resto: resto}
+						}}>
 						<div className="content-panel">
 							<small>{resto.location}</small>
 							<strong>{resto.name}</strong>

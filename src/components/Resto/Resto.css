@@ -1,0 +1,17 @@
+.resto-wrapper{
+	height: 100vh;
+	display: flex;
+	align-items: center;
+}
+.resto--cover{
+	width: 45%;
+	height: 100vh;
+	background-size: cover;
+	background-position: center;
+}
+.resto--info{
+	flex: 1;
+}
+.resto--info h4:after{
+	content: none;
+}
