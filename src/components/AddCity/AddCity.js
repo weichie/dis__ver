@@ -46,15 +46,20 @@ class AddCity extends React.Component{
 			for (let city in cities){
 				newState.push({
 					id: city,
-					name: cities[city].currentName,
-					info: cities[city].currentInfo,
-					cover: cities[city].currentCover
+					name: cities[city].name,
+					info: cities[city].info,
+					cover: cities[city].cover
 				});
 			}
 			this.setState({
 				cities: newState
 			});
 		})
+	}
+
+	removeCity(cityId){
+		const itemRef = firebase.database().ref(`/cities/${cityId}`);
+		itemRef.remove();
 	}
 
 	render(){
@@ -74,6 +79,7 @@ class AddCity extends React.Component{
 							<li key={city.id}>
 								<h3>{city.name}</h3>
 								<p>{city.info}</p>
+								<button onClick={() => this.removeCity(city.id)}>Remove</button>
 							</li>
 						);
 					})}
