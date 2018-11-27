@@ -1,5 +1,5 @@
 import React from 'react';
-import firebase from '../../firebase.js';
+import firebase, { auth, provider } from '../../firebase.js';
 
 import './AddCity.css';
 
@@ -10,7 +10,8 @@ class AddCity extends React.Component{
 			name: '',
 			info: '',
 			cover: '',
-			cities: []
+			cities: [],
+			user: null
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
