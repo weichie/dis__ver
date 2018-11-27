@@ -10,6 +10,7 @@ class AddCity extends React.Component{
 			name: '',
 			info: '',
 			cover: '',
+			cities: []
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,6 +38,25 @@ class AddCity extends React.Component{
 		});
 	}
 
+	componentDidMount(){
+		const itemsRef = firebase.database().ref('cities');
+		itemsRef.on('value', (snapshot) => {
+			let cities = snapshot.val();
+			let newState = [];
+			for (let city in cities){
+				newState.push({
+					id: city,
+					name: cities[city].currentName,
+					info: cities[city].currentInfo,
+					cover: cities[city].currentCover
+				});
+			}
+			this.setState({
+				cities: newState
+			});
+		})
+	}
+
 	render(){
 		return(
 			<div className="addCity-wrapper">
@@ -49,7 +69,14 @@ class AddCity extends React.Component{
 				</form>
 
 				<ul className="all-cities">
-
+					{this.state.cities.map((city) => {
+						return(
+							<li key={city.id}>
+								<h3>{city.name}</h3>
+								<p>{city.info}</p>
+							</li>
+						);
+					})}
 				</ul>
 			</div>
 		);
