@@ -7,10 +7,12 @@ class AddCity extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			currentItem: '',
-			username: ''
+			name: '',
+			info: '',
+			cover: '',
 		}
 		this.handleChange = this.handleChange.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
 	handleChange(e){
@@ -19,13 +21,30 @@ class AddCity extends React.Component{
 		});
 	}
 
+	handleSubmit(e){
+		e.preventDefault();
+		const itemsRef = firebase.database().ref('cities');
+		const city = {
+			name: this.state.name,
+			info: this.state.info,
+			cover: this.state.cover,
+		}
+		itemsRef.push(city);
+		this.setState({
+			name: '',
+			info: '',
+			cover: '',
+		});
+	}
+
 	render(){
 		return(
 			<div className="addCity-wrapper">
 				<h1>Add City</h1>
-				<form>
-					<input type="text" name="username" onChange={this.handleChange} value={this.state.username} placeholder="What's your name?" />
-					<input type="text" name="currentItem" onChange={this.handleChange} value={this.state.currentItem} placeholder="What are you bringing?" />
+				<form onSubmit={this.handleSubmit}>
+					<input type="text" name="cover" onChange={this.handleChange} value={this.state.cover} placeholder="Upload Image" />
+					<input type="text" name="name" onChange={this.handleChange} value={this.state.name} placeholder="City Name" />
+					<textarea name="info" onChange={this.handleChange} value={this.state.info} placeholder="What are you bringing?"></textarea>
 					<button>Add Item</button>
 				</form>
 
