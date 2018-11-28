@@ -70,28 +70,28 @@ class AddCity extends React.Component{
 
 	render(){
 		return(
-			<div className="addCity-wrapper">
-				<h1>Add City</h1>
-
-				<form onSubmit={this.handleSubmit}>
-					<input type="text" name="cover" onChange={this.handleChange} value={this.state.cover} placeholder="Upload Image" />
-					<input type="text" name="name" onChange={this.handleChange} value={this.state.name} placeholder="City Name" />
-					<textarea name="info" onChange={this.handleChange} value={this.state.info} placeholder="What are you bringing?"></textarea>
-					<button>Add Item</button>
-				</form>
-
-				<ul className="all-cities">
-					{this.state.cities.map((city) => {
-						return(
-							<li key={city.id}>
-								<h3>{city.name}</h3>
-								<p>{city.info}</p>
-								<button onClick={() => this.removeCity(city.id)}>Remove</button>
-							</li>
-						);
-					})}
-				</ul>
-
+			<div className="addcity-wrapper">
+				<div className="addleft">
+					<ul className="all-cities">
+						{this.state.cities.map((city) => {
+							return(
+								<li key={city.id}>
+									<h3>{city.name} <a href="#!" onClick={() => this.removeCity(city.id)}><i className="fa fa-times"></i></a></h3>
+									<p>{city.info}</p>
+								</li>
+							);
+						})}
+					</ul>
+				</div>
+				<div className="addright">
+					<h1>Add City</h1>
+					<form onSubmit={this.handleSubmit}>
+						<input type="text" name="cover" onChange={this.handleChange} value={this.state.cover} placeholder="Upload Image" />
+						<input type="text" name="name" onChange={this.handleChange} value={this.state.name} placeholder="City Name" />
+						<textarea name="info" onChange={this.handleChange} value={this.state.info} placeholder="What are you bringing?"></textarea>
+						<button>Add Item</button>
+					</form>
+				</div>
 			</div>
 		);
 	}
