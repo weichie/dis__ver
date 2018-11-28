@@ -10,27 +10,10 @@ class AddCity extends React.Component{
 			name: '',
 			info: '',
 			cover: '',
-			cities: [],
-			user: null
+			cities: []
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
-		this.logout = this.logout.bind(this);
-		this.login = this.login.bind(this);
-	}
-
-	logout(){
-		auth.signOut()
-			.then(() => {
-				this.setState({user: null});
-			});
-	}
-	login(){
-		auth.signInWithPopup(provider)
-			.then(result => {
-				const user = result.user;
-				this.setState({user});
-			})
 	}
 
 	handleChange(e){
@@ -89,12 +72,6 @@ class AddCity extends React.Component{
 		return(
 			<div className="addCity-wrapper">
 				<h1>Add City</h1>
-
-				{this.state.user ? 
-					<button onClick={this.logout}>Logout</button>
-				:
-					<button onClick={this.login}>Login</button>
-				}
 
 				<form onSubmit={this.handleSubmit}>
 					<input type="text" name="cover" onChange={this.handleChange} value={this.state.cover} placeholder="Upload Image" />
