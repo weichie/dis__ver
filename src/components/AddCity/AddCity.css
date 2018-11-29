@@ -1,10 +1,11 @@
 .addcity-wrapper{
 	display: flex;
-	min-height: 100vh;
+	height: 100vh;
 }
 .addleft{
 	width: 50%;
 	padding: 50px;
+	overflow-y: scroll;
 	border-right: 1px solid #e5e5e5;
 }
 .addright{
@@ -17,6 +18,10 @@
 }
 .all-cities li{
 	margin-bottom: 35px;
+}
+.all-cities img{
+	width: 100%;
+	height: auto;
 }
 .all-cities h3{
 	display: block;
@@ -31,4 +36,21 @@
 	font-size: 12px;
 	color: red;
 	font-weight: 300;
+}
+.addcity-wrapper form{
+	margin-top: 35px;
+}
+.form-input{
+	border: 1px solid #e5e5e5;
+	width: 100%;
+	padding: 10px;
+	font-size: 16px;
+	display: block;
+	resize: none;
+	margin-bottom: 10px;
+	outline: none;
+	transition: all .3s ease;
+}
+.form-input:focus{
+	border-bottom: 1px solid #000;
 }
