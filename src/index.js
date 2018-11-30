@@ -16,7 +16,10 @@ import Login 			from './components/Login/Login';
 class AppRouter extends React.Component{
 	constructor(props){
 		super(props);
-		this.state = {user: null}
+		this.state = {
+			user: null,
+			userEmail: null
+		}
 		this.login = this.login.bind(this);
 		this.logout = this.logout.bind(this);
 	}
@@ -24,7 +27,10 @@ class AppRouter extends React.Component{
 	logout(){
 		auth.signOut()
 			.then(() => {
-				this.setState({user: null});
+				this.setState({
+					user: null,
+					userEmail: null
+				});
 			});
 	}
 
@@ -32,14 +38,20 @@ class AppRouter extends React.Component{
 		auth.signInWithPopup(provider)
 			.then(result => {
 				const user = result.user;
-				this.setState({user});
+				this.setState({
+					user,
+					userEmail: user.email
+				});
 			});
 	}
 
 	componentDidMount(){
 		auth.onAuthStateChanged(user => {
 			if(user){
-				this.setState({user});
+				this.setState({
+					user,
+					userEmail: user.email
+				});
 			}
 		});
 	}
@@ -50,7 +62,7 @@ class AppRouter extends React.Component{
 				<div className="app">
 					<Login login={this.login} logout={this.logout} currentLogged={this.state.user} />
 					<nav className="main-nav">
-						{this.state.user ? <Link className="dark-link" to="/add-city">ADD</Link> : ''}
+						{(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? <Link className="dark-link" to="/add-city">ADD</Link> : ''}
 						<Link className="dark-link" to="/">Home</Link>
 						<Link className="dark-link" to="/destinations/">Destination</Link>
 						<Link className="dark-link" to="/about">About</Link>
@@ -61,7 +73,7 @@ class AppRouter extends React.Component{
 						<Route path="/" exact component={Home} />
 						<Route path="/destinations" component={Destination} />
 						<Route path="/about" component={About} />
-						<Route path="/add-city" component={(this.state.user) ? AddCity : Home} />
+						<Route path="/add-city" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddCity : Home} />
 						<Route path="/discover" component={Discover} />
 						<Route path="/resto" component={Resto} />
 						<Route path="/add-city" component={AddCity} />
