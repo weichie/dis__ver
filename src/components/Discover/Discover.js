@@ -1,58 +1,55 @@
 import React from 'react';
+import firebase from '../../firebase.js';
 
 import './Discover.css';
 
 import Sidenav from './Sidenav/Sidenav';
 import Main from './Main/Main';
 
-import manhattan_bg from'./manhattan_bg.jpg';
-import brooklyn_bg from'./brooklyn_bg.jpg';
-import queens_bg from'./queens_bg.jpg';
-import harlem_bg from'./harlem_bg.jpg';
-import bronx_bg from'./bronx_bg.jpg';
-
-var neighborhoods = [{
-	id: 1,
-	cover: manhattan_bg,
-	name: 'Manhattan',
-	info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi natus, optio hic autem dolore quod delectus cum corrupti commodi. Voluptate reprehenderit ratione dignissimos perspiciatis a nostrum consequuntur illo pariatur magnam.'
-},{
-	id: 2,
-	cover: brooklyn_bg,
-	name: 'Brooklyn',
-	info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi natus, optio hic autem dolore quod delectus cum corrupti commodi. Voluptate reprehenderit ratione dignissimos perspiciatis a nostrum consequuntur illo pariatur magnam.'
-},{
-	id: 3,
-	cover: queens_bg,
-	name: 'Queens',
-	info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi natus, optio hic autem dolore quod delectus cum corrupti commodi. Voluptate reprehenderit ratione dignissimos perspiciatis a nostrum consequuntur illo pariatur magnam.'
-},{
-	id: 4,
-	cover: harlem_bg,
-	name: 'Harlem',
-	info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi natus, optio hic autem dolore quod delectus cum corrupti commodi. Voluptate reprehenderit ratione dignissimos perspiciatis a nostrum consequuntur illo pariatur magnam.'
-},{
-	id: 5,
-	cover: bronx_bg,
-	name: 'The Bronx',
-	info: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi natus, optio hic autem dolore quod delectus cum corrupti commodi. Voluptate reprehenderit ratione dignissimos perspiciatis a nostrum consequuntur illo pariatur magnam.'
-}];
-
 class Discover extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			neighborhoods: neighborhoods,
-			currentCity: 1,
-			currentCover: manhattan_bg
+			cities: [],
 		}
 		this.updateCurrent = this.updateCurrent.bind(this);
 	}
 
-	updateCurrent(id){
+	updateCurrent(id, cover, name, info){
 		this.setState({
 			currentCity: id,
-			currentCover: neighborhoods[id - 1].cover
+			currentCover: cover,
+			currentName: name,
+			currentInfo: info
+		});
+	}
+
+	componentDidMount(){
+		const itemsRef = firebase.database().ref('cities');
+		itemsRef.on('value', (snapshot) => {
+			let cities = snapshot.val();
+			let newState = [];
+			let counter = 0;
+			for (let city in cities){
+				newState.push({
+					id: cities[city].cityId,
+					name: cities[city].name,
+					info: cities[city].info,
+					cover: cities[city].cover
+				});
+				if(counter === 0){
+					this.setState({
+						currentCity: cities[city].cityId,
+						currentName: cities[city].name,
+						currentCover: cities[city].cover,
+						currentInfo: cities[city].info
+					});
+				}
+				counter++;
+			}
+			this.setState({
+				cities: newState
+			});
 		});
 	}
 
@@ -61,14 +58,18 @@ class Discover extends React.Component{
 			<div className="discover-wrapper" style={{backgroundImage: `url(${this.state.currentCover})`}}>
 				<div className="dark-filter med"></div>
 				<Sidenav 
-					cities={neighborhoods} 
+					cities={this.state.cities} 
 					current={this.state.currentCity} 
 					currentHandler={this.updateCurrent} 
 				/>
-				<Main 
-					cities={neighborhoods}
-					current={this.state.currentCity}
-				/>
+				{this.state.currentCity &&
+					<Main 
+						cities={this.state.cities}
+						current_id={this.state.currentCity}
+						current_name={this.state.currentName}
+						current_info={this.state.currentInfo}
+					/>
+				}
 			</div>
 		);
 	}

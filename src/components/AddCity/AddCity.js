@@ -1,9 +1,11 @@
 import React from 'react';
-import firebase, { auth } from '../../firebase.js';
+import firebase from '../../firebase.js';
 
 import './AddCity.css';
 
 class AddCity extends React.Component{
+	_isMounted = false;
+
 	constructor(props){
 		super(props);
 		this.state = {
@@ -42,6 +44,7 @@ class AddCity extends React.Component{
 	}
 
 	componentDidMount(){
+		this._isMounted = true;
 		const itemsRef = firebase.database().ref('cities');
 		itemsRef.on('value', (snapshot) => {
 			let cities = snapshot.val();
@@ -54,10 +57,16 @@ class AddCity extends React.Component{
 					cover: cities[city].cover
 				});
 			}
-			this.setState({
-				cities: newState
-			});
+			if(this._isMounted){
+				this.setState({
+					cities: newState
+				});
+			}
 		})
+	}
+
+	componentWillUnmount() {
+		this._isMounted = false;
 	}
 
 	removeCity(cityId){
@@ -73,7 +82,7 @@ class AddCity extends React.Component{
 						{this.state.cities.map((city) => {
 							return(
 								<li key={city.id}>
-									<img src={city.cover} />
+									<img src={city.cover} alt={city.name} />
 									<h3>{city.name} <a href="#!" onClick={() => this.removeCity(city.id)}><i className="fa fa-times"></i></a></h3>
 									<p>{city.info}</p>
 								</li>

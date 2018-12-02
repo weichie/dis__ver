@@ -63,9 +63,8 @@ var gems = [
 
 class Main extends React.Component{
 	render(){
-		const current_city = this.props.cities[this.props.current - 1];
 		const restos = gems.map(resto => {
-			if (resto.city_id === this.props.current) {
+			if (resto.city_id === this.props.current_id) {
 				return <li key={resto.id} style={{backgroundImage: `url(${resto.cover})`}}>
 					<Link 
 						to={{
@@ -86,8 +85,8 @@ class Main extends React.Component{
 			<div className="discover-main-wrapper">
 				<div className="discover--info">
 					<h4>Discover</h4>
-					<h1>{current_city.name}</h1>
-					<p>{current_city.info}</p>
+					<h1>{this.props.current_name}</h1>
+					<p>{this.props.current_info}</p>
 				</div>
 				<div className="discover--list">
 					<ul className="resto-list">
