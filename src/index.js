@@ -11,6 +11,7 @@ import Discover 		from './components/Discover/Discover';
 import Destination 	from './components/Destination/Destination';
 import Resto 			from './components/Resto/Resto';
 import AddCity 		from './components/AddCity/AddCity';
+import AddResto 		from './components/AddResto/AddResto';
 import Login 			from './components/Login/Login';
 
 class AppRouter extends React.Component{
@@ -74,6 +75,7 @@ class AppRouter extends React.Component{
 						<Route path="/destinations" component={Destination} />
 						<Route path="/about" component={About} />
 						<Route path="/add-city" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddCity : Home} />
+						<Route path="/add-resto" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddResto : Home} />
 						<Route path="/discover" component={Discover} />
 						<Route path="/resto" component={Resto} />
 						<Route path="/add-city" component={AddCity} />

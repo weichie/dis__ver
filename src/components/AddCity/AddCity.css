@@ -54,3 +54,30 @@
 .form-input:focus{
 	border-bottom: 1px solid #000;
 }
+.add-btn{
+	border: 1px solid #111619;
+	background: #111619;
+	display: inline-block;
+	color: #fff;
+	padding: 15px;
+	cursor: pointer;
+	transition: all .3s ease;
+}
+.add-btn:hover{
+	background: #ec1f48;
+	border: 1px solid #ec1f48;
+}
+.add-container{
+	border: 1px solid red;
+	margin-bottom: 20px;
+}
+.dif-link{
+	color: #ec1f48;
+	display: inline-block;
+	margin-top: 25px;
+	font-size: 18px;
+	transition: color .3s ease;
+}
+.dif-link:hover{
+	color: #111619;
+}

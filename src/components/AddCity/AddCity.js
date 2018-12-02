@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from '../../firebase.js';
+import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import './AddCity.css';
 
@@ -95,9 +96,10 @@ class AddCity extends React.Component{
 					<form onSubmit={this.handleSubmit}>
 						<input className="form-input" type="text" name="cover" onChange={this.handleChange} value={this.state.cover} placeholder="Upload Image" />
 						<input className="form-input" type="text" name="name" onChange={this.handleChange} value={this.state.name} placeholder="City Name" />
-						<textarea className="form-input" name="info" rows="5" onChange={this.handleChange} value={this.state.info} placeholder="What are you bringing?"></textarea>
-						<button>Add Item</button>
+						<textarea className="form-input" name="info" rows="5" onChange={this.handleChange} value={this.state.info} placeholder="City description"></textarea>					
+						<button className="add-btn">Add City</button>
 					</form>
+					<Link className="dif-link" to="/add-resto/">Add Resto</Link>
 				</div>
 			</div>
 		);
