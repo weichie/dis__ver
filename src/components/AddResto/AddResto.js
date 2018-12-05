@@ -10,7 +10,7 @@ class AddResto extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			id: '',
+			slug: '',
 			name: '',
 			info: '',
 			cover: '',
@@ -89,10 +89,8 @@ class AddResto extends React.Component{
 	}
 
 	removeResto(id){
-		console.log('REMOVING');
-		console.log(`/restos/${id}`);
-		// const itemRef = firebase.database().ref(`/restos/${id}`);
-		// itemRef.remove();
+		const itemRef = firebase.database().ref(`/restos/${id}`);
+		itemRef.remove();
 	}
 
 	render(){
