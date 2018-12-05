@@ -71,8 +71,9 @@ class AddCity extends React.Component{
 	}
 
 	removeCity(cityId){
-		const itemRef = firebase.database().ref(`/cities/${cityId}`);
-		itemRef.remove();
+		console.log(`/cities/${cityId}`);
+		// const itemRef = firebase.database().ref(`/cities/${cityId}`);
+		// itemRef.remove();
 	}
 
 	render(){
