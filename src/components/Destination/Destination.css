@@ -8,3 +8,42 @@
 	width: 50vw;
 	padding: 25px;
 }
+.map-content h1{
+	text-align: center;
+	padding: 50px 0;
+}
+.map-wrapper > div:first-child{
+	width: 50% !important;
+	position: fixed !important;
+}
+
+.resto-cover-list{
+	list-style-type: none;
+	padding: 0; margin: 0;
+	display: flex;
+	flex-wrap: wrap;
+}
+.resto-cover-list li{
+	width: 50%;
+	padding: 5px 10px;
+}
+.resto-cover-list .resto-cover{
+	height: 200px; width: 100%;
+	background-size: cover;
+	background-position: center;
+	border-radius: 3px;
+}
+.resto-cover-list .resto-info 	{padding: 10px 0;}
+.resto-cover-list a 					{display: block;}
+
+.resto-cover-list h4{
+	color: #ec1f48;
+	font-weight: 400;
+	font-size: 14px;
+}
+.resto-cover-list h3{
+	color: #2d2e4d;
+}
+.resto-cover-list small{
+	color: #999;
+}

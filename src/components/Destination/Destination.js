@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import firebase from '../../firebase.js';
+import { BrowserRouter as Route, Link } from "react-router-dom";
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 // import CurrentLocation from '../Map.js'; ADD IN LATER
@@ -20,10 +22,15 @@ class Destination extends React.Component{
 			showingInfoWindow: false,
 			activeMarker: {},
 			selectedPlace: {},
+			mapCenter: {},
+			mapZoom: 13,
+			currentMarker: '',
 			restos: []
 		};
 		this.onMarkerClick = this.onMarkerClick.bind(this);
 		this.onClose = this.onClose.bind(this);
+		this.zoomToMarker = this.zoomToMarker.bind(this);
+		this.zoomToDefault = this.zoomToDefault.bind(this);
 	}
 
 	onMarkerClick = (props, marker, e) => {
@@ -67,29 +74,76 @@ class Destination extends React.Component{
 		});
 	}
 
+	zoomToMarker(latln, lonln, markerId){
+		this.setState({
+			mapCenter: {lat: latln, lng: lonln},
+			mapZoom: 14,
+			currentMarker: markerId
+		});
+	}
+	zoomToDefault(){
+		this.setState({
+			mapZoom: 13,
+			currentMarker: ''
+		});
+	}
+
 	render(){
+		const icon_black = {
+			url: "https://firebasestorage.googleapis.com/v0/b/disver-e3684.appspot.com/o/black-marker.png?alt=media&token=10329174-cc3b-4dea-8b34-348bf97033b3",
+			scaledSize: new this.props.google.maps.Size(18, 24),
+		};
+		const icon_red = {
+			url: "https://firebasestorage.googleapis.com/v0/b/disver-e3684.appspot.com/o/red-marker.png?alt=media&token=841c9a0f-fcef-4b6d-9de6-0d77cc7da392",
+			scaledSize: new this.props.google.maps.Size(18, 24),
+		};
+		
 		const markers = this.state.restos.map(resto => {
 			return(
 				<Marker 
+					key={resto.id}
+					keyProp={resto.id}
 					onClick={this.onMarkerClick} 
 					name={resto.name} 
+					icon={(resto.id == this.state.currentMarker) ? icon_black : icon_red}
 					description={resto.info}
 					position={{ lat: resto.latln, lng: resto.lonln }}
 				/>
 			);
 		});
 
+		const restos = this.state.restos.map(resto => {
+			return(
+				<li key={resto.id} onMouseEnter={() => this.zoomToMarker(resto.latln, resto.lonln, resto.id)} onMouseLeave={() => this.zoomToDefault()}>
+					<Link to={{
+						pathname: '/resto/' + resto.slug, 
+						state: { current_resto: resto}
+					}}>
+						<div className="resto-cover" style={{backgroundImage: `url(${resto.cover})`}}></div>
+						<div className="resto-info">
+							<h4>{resto.type}</h4>
+							<h3>{resto.name}</h3>
+							<small>{resto.address}</small>
+						</div>
+					</Link>
+				</li>
+			);
+		});
+
 		return(
 			<div className="map-wrapper">
 				<Map 
+					ref="map"
+					class="test"
 					google={this.props.google}	
-					zoom={13} 
+					zoom={this.state.mapZoom} 
 					style={mapStyles} 
 					styles={snazzy}
 					initialCenter={{lat: 40.737355, lng: -73.992580}}
+					center={this.state.mapCenter}
 				>
 					
-					{markers}
+					{ markers }
 
 					<InfoWindow 
 						marker={this.state.activeMarker}
@@ -103,8 +157,10 @@ class Destination extends React.Component{
 					</InfoWindow>
 				</Map>
 				<div className="map-content">
-					<h4>{this.state.selectedPlace.name}</h4>
-					<h1 onClick={this.onMarkerClick}>test</h1>
+					<h1>Find spots near you</h1>
+					<ul className="resto-cover-list">
+						{ restos }
+					</ul>
 				</div>
 			</div>
 		);

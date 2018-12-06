@@ -77,8 +77,11 @@ class CurrentLocation extends React.Component{
 				}
 			);
 
+			console.log(mapConfig);
+
 			//maps.map() is constructor that instantiates the map
-			this.map = new maps.Map(node, mapConfig);
+			// this.map = new maps.Map(node, mapConfig);
+			map.panTo(latln, lonln);
 		}
 	}
 
