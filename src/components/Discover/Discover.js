@@ -67,7 +67,8 @@ class Discover extends React.Component{
 					city: restos[resto].city,
 					location: restos[resto].location,
 					latln: restos[resto].latln,
-					lonln: restos[resto].lonln
+					lonln: restos[resto].lonln,
+					address: restos[resto].address,
 				});
 			}
 			this.setState({

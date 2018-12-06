@@ -12,11 +12,13 @@ class AddResto extends React.Component{
 		this.state = {
 			slug: '',
 			name: '',
+			address: '',
 			info: '',
 			cover: '',
 			city: '',
 			location: '',
 			latln: '',
+			type: '',
 			lonln: '',
 			restos: []
 		}
@@ -39,6 +41,8 @@ class AddResto extends React.Component{
 			cover: this.state.cover,
 			name: this.state.name,
 			info: this.state.info,
+			address: this.state.address,
+			type: this.state.type,
 			city: parseInt(this.state.city),
 			location: this.state.location,
 			latln: this.state.latln*1,
@@ -53,7 +57,9 @@ class AddResto extends React.Component{
 			city: '',
 			location: '',
 			latln: '',
-			lonln: '' 	
+			lonln: '',
+			address: '',
+			type: '',
 		});
 	}
 
@@ -73,7 +79,9 @@ class AddResto extends React.Component{
 					city: restos[resto].city,
 					location: restos[resto].location,
 					latln: restos[resto].latln,
-					lonln: restos[resto].lonln
+					lonln: restos[resto].lonln,
+					address: restos[resto].address,
+					type: restos[resto].type
 				});
 			}
 			if(this._isMounted){
@@ -89,6 +97,7 @@ class AddResto extends React.Component{
 	}
 
 	removeResto(id){
+		console.log(id);
 		const itemRef = firebase.database().ref(`/restos/${id}`);
 		itemRef.remove();
 	}
@@ -120,6 +129,8 @@ class AddResto extends React.Component{
 						<input className="form-input" type="text" name="city" onChange={this.handleChange} value={this.state.city} placeholder="City ID" />
 						<input className="form-input" type="text" name="latln" onChange={this.handleChange} value={this.state.latln} placeholder="Latitude" />
 						<input className="form-input" type="text" name="lonln" onChange={this.handleChange} value={this.state.lonln} placeholder="Longitude" />
+						<input className="form-input" type="text" name="address" onChange={this.handleChange} value={this.state.address} placeholder="Address" />
+						<input className="form-input" type="text" name="type" onChange={this.handleChange} value={this.state.type} placeholder="Type" />
 						<textarea className="form-input" name="info" rows="5" onChange={this.handleChange} value={this.state.info} placeholder="Resto Description"></textarea>
 						<button className="add-btn">Add Resto</button>
 					</form>

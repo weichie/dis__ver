@@ -9,7 +9,6 @@ class Main extends React.Component{
 	render(){
 		const restos = this.props.restos.map(resto => {
 			if (resto.city === this.props.current_id) {
-				console.log(resto.slug);
 				return <li key={resto.id} style={{backgroundImage: `url(${resto.cover})`}}>
 					<Link 
 						to={{
