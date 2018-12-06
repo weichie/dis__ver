@@ -13,6 +13,7 @@ import Resto 			from './components/Resto/Resto';
 import AddCity 		from './components/AddCity/AddCity';
 import AddResto 		from './components/AddResto/AddResto';
 import Login 			from './components/Login/Login';
+import Map 				from './components/Map';
 
 class AppRouter extends React.Component{
 	constructor(props){
@@ -65,14 +66,14 @@ class AppRouter extends React.Component{
 					<nav className="main-nav">
 						{(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? <Link className="dark-link" to="/add-city">ADD</Link> : ''}
 						<Link className="dark-link" to="/">Home</Link>
-						{/* <Link className="dark-link" to="/destinations/">Destination</Link> */}
+						<Link className="dark-link" to="/destinations/">Destination</Link>
 						<Link className="dark-link" to="/about">About</Link>
 						<Link to="/discover/">Discover</Link>
 					</nav>
 
 					<Switch>
 						<Route path="/" exact component={Home} />
-						{/*<Route path="/destinations" component={Destination} /> */}
+						<Route path="/destinations" component={Destination} />
 						<Route path="/about" component={About} />
 						<Route path="/add-city" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddCity : Home} />
 						<Route path="/add-resto" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddResto : Home} />
