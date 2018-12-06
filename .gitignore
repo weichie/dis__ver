@@ -13,6 +13,7 @@
 
 # Credentials & API Keys
 /src/firebase.js
+/src/components/Destination/apiKeys.js
 
 # misc
 .DS_Store
