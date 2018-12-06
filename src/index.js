@@ -13,7 +13,6 @@ import Resto 			from './components/Resto/Resto';
 import AddCity 		from './components/AddCity/AddCity';
 import AddResto 		from './components/AddResto/AddResto';
 import Login 			from './components/Login/Login';
-import Map 				from './components/Map';
 
 class AppRouter extends React.Component{
 	constructor(props){
