@@ -105,7 +105,7 @@ class Destination extends React.Component{
 					keyProp={resto.id}
 					onClick={this.onMarkerClick} 
 					name={resto.name} 
-					icon={(resto.id == this.state.currentMarker) ? icon_black : icon_red}
+					icon={(resto.id === this.state.currentMarker) ? icon_black : icon_red}
 					description={resto.info}
 					position={{ lat: resto.latln, lng: resto.lonln }}
 				/>

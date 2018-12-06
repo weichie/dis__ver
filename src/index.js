@@ -19,10 +19,13 @@ class AppRouter extends React.Component{
 		super(props);
 		this.state = {
 			user: null,
-			userEmail: null
+			userEmail: null,
+			menuOpen: false
 		}
 		this.login = this.login.bind(this);
 		this.logout = this.logout.bind(this);
+		this.handleMenu = this.handleMenu.bind(this);
+		this.hideMenu = this.hideMenu.bind(this);
 	}
 
 	logout(){
@@ -46,6 +49,14 @@ class AppRouter extends React.Component{
 			});
 	}
 
+	handleMenu(){
+		this.setState({menuOpen: !this.state.menuOpen});
+	}
+
+	hideMenu(){
+		this.setState({menuOpen: false});	
+	}
+
 	componentDidMount(){
 		auth.onAuthStateChanged(user => {
 			if(user){
@@ -57,17 +68,21 @@ class AppRouter extends React.Component{
 		});
 	}
 
+
 	render(){
 		return(
 			<Router>
 				<div className="app">
 					<Login login={this.login} logout={this.logout} currentLogged={this.state.user} />
-					<nav className="main-nav">
-						{(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? <Link className="dark-link" to="/add-city">ADD</Link> : ''}
-						<Link className="dark-link" to="/">Home</Link>
-						<Link className="dark-link" to="/destinations/">Destination</Link>
-						<Link className="dark-link" to="/about">About</Link>
-						<Link to="/discover/">Discover</Link>
+					
+					<div className="openMenu" onClick={() => this.handleMenu()}>menu</div>
+
+					<nav className={(this.state.menuOpen) ? 'main-nav open' : 'main-nav'}>
+						{(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? <Link onClick={()=>this.hideMenu()} className="dark-link" to="/add-city">ADD</Link> : ''}
+						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/">Home</Link>
+						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/destinations/">Destination</Link>
+						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/about">About</Link>
+						<Link onClick={()=>this.hideMenu()} to="/discover/">Discover</Link>
 					</nav>
 
 					<Switch>

@@ -6,7 +6,7 @@
 .map-content{
 	float: right;
 	width: 50vw;
-	padding: 25px;
+	padding: 25px 25px 100px 25px;
 }
 .map-content h1{
 	text-align: center;

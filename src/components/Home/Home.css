@@ -6,7 +6,8 @@
 }
 .home-wrapper .inner{
 	position: absolute;
-	width: 500px;
+	max-width: 500px;
+	width: 90%;
 	top: 50%; left: 150px;
 	transform: translateY(-50%);
 	color: #fff;
@@ -74,4 +75,20 @@
 }
 .home-wrapper .discover-link span:after{
 	transform: translateY(4px) rotate(-45deg);
+}
+
+@media (max-width: 800px){
+	.home-wrapper .inner{
+		top: 50%; left: 50%;
+		transform: translate(-50%,-50%);
+	}
+}
+@media (max-width: 700px){
+	.home-wrapper h1{
+		font-size: 40px;
+		line-height: 46px;
+	}
+	.home-wrapper p{
+		font-size: 20px;
+	}
 }
