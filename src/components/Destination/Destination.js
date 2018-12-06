@@ -1,6 +1,7 @@
 import React from 'react';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
+// import CurrentLocation from '../Map.js'; ADD IN LATER
 import mapConfig from './apiKeys.js';
 import './Destination.css';
 
@@ -23,7 +24,6 @@ class Destination extends React.Component{
 	}
 
 	onMarkerClick = (props, marker, e) => {
-		console.log(props);
 		this.setState({
 			selectedPlace: props,
 			activeMarker: marker,
@@ -32,7 +32,7 @@ class Destination extends React.Component{
 	}
 
 	onClose = props => {
-		if (this.state.showingInfoWindow) {
+		if (this.state.showingInfoWindow){
 			this.setState({
 				showingInfoWindow: false,
 				activeMarker: null
