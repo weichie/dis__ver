@@ -11,6 +11,7 @@ class Discover extends React.Component{
 		super(props);
 		this.state = {
 			cities: [],
+			restos: []
 		}
 		this.updateCurrent = this.updateCurrent.bind(this);
 	}
@@ -25,8 +26,9 @@ class Discover extends React.Component{
 	}
 
 	componentDidMount(){
-		const itemsRef = firebase.database().ref('cities');
-		itemsRef.on('value', (snapshot) => {
+		const cityRef = firebase.database().ref('cities');
+		const restoRef = firebase.database().ref('restos');
+		cityRef.on('value', (snapshot) => {
 			let cities = snapshot.val();
 			let newState = [];
 			let counter = 0;
@@ -51,6 +53,27 @@ class Discover extends React.Component{
 				cities: newState
 			});
 		});
+
+		restoRef.on('value', (snapshot) => {
+			let restos = snapshot.val();
+			let restoState = [];
+			for (let resto in restos){
+				restoState.push({
+					id: resto,
+					slug: restos[resto].slug,
+					cover: restos[resto].cover,
+					name: restos[resto].name,
+					info: restos[resto].info,
+					city: restos[resto].city,
+					location: restos[resto].location,
+					latln: restos[resto].latln,
+					lonln: restos[resto].lonln
+				});
+			}
+			this.setState({
+				restos: restoState
+			})
+		})
 	}
 
 	render(){
@@ -64,10 +87,10 @@ class Discover extends React.Component{
 				/>
 				{this.state.currentCity &&
 					<Main 
-						cities={this.state.cities}
 						current_id={this.state.currentCity}
 						current_name={this.state.currentName}
 						current_info={this.state.currentInfo}
+						restos={this.state.restos}
 					/>
 				}
 			</div>
