@@ -72,7 +72,7 @@ class AddResto extends React.Component{
 			for(let resto in restos){
 				newState.push({
 					id: resto,
-					slug: restos[resto].id,
+					slug: restos[resto].slug,
 					cover: restos[resto].cover,
 					name: restos[resto].name,
 					info: restos[resto].info,

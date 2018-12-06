@@ -1,4 +1,5 @@
 import React from 'react';
+import firebase from '../../firebase.js';
 import { Map, GoogleApiWrapper, InfoWindow, Marker } from 'google-maps-react';
 
 // import CurrentLocation from '../Map.js'; ADD IN LATER
@@ -18,7 +19,8 @@ class Destination extends React.Component{
 		this.state = {
 			showingInfoWindow: false,
 			activeMarker: {},
-			selectedPlace: {}
+			selectedPlace: {},
+			restos: []
 		};
 		this.onMarkerClick = this.onMarkerClick.bind(this);
 		this.onClose = this.onClose.bind(this);
@@ -41,7 +43,42 @@ class Destination extends React.Component{
 		}
 	};
 
+	componentDidMount(){
+		const itemsRef = firebase.database().ref('restos');
+		itemsRef.on('value', snapshot => {
+			let restos = snapshot.val();
+			let newState = [];
+			for(let resto in restos){
+				newState.push({
+					id: resto,
+					slug: restos[resto].slug,
+					cover: restos[resto].cover,
+					name: restos[resto].name,
+					info: restos[resto].info,
+					city: restos[resto].city,
+					location: restos[resto].location,
+					latln: restos[resto].latln,
+					lonln: restos[resto].lonln,
+					address: restos[resto].address,
+					type: restos[resto].type
+				});
+			}
+			this.setState({restos: newState});
+		});
+	}
+
 	render(){
+		const markers = this.state.restos.map(resto => {
+			return(
+				<Marker 
+					onClick={this.onMarkerClick} 
+					name={resto.name} 
+					description={resto.info}
+					position={{ lat: resto.latln, lng: resto.lonln }}
+				/>
+			);
+		});
+
 		return(
 			<div className="map-wrapper">
 				<Map 
@@ -51,25 +88,8 @@ class Destination extends React.Component{
 					styles={snazzy}
 					initialCenter={{lat: 40.737355, lng: -73.992580}}
 				>
-
-					<Marker 
-						onClick={this.onMarkerClick} 
-						name={'Wonton Noodle Garden'} 
-						description={'Wonton Noodle Garden Description'}
-						position={{ lat: 40.715846, lng: -73.998261 }}
-					/>
-					<Marker 
-						onClick={this.onMarkerClick} 
-						name={'Blockheads'} 
-						description={'Blockheads description'}
-						position={{ lat: 40.731278, lng: -73.989033 }}
-					/>
-					<Marker
-						onClick={this.onMarkerClick} 
-						name={'Brother Jimmy\'s BBQ'} 
-						description={'BBQ description'}
-						position={{ lat: 40.750311, lng: -73.994669 }}
-					/>
+					
+					{markers}
 
 					<InfoWindow 
 						marker={this.state.activeMarker}
