@@ -9,11 +9,6 @@ import mapConfig from './apiKeys.js';
 import './Destination.css';
 
 const snazzy = [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#6195a0"}]},{"featureType":"administrative.province","elementType":"geometry.stroke","stylers":[{"visibility":"off"}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"lightness":"0"},{"saturation":"0"},{"color":"#f5f5f2"},{"gamma":"1"}]},{"featureType":"landscape.man_made","elementType":"all","stylers":[{"lightness":"-3"},{"gamma":"1.00"}]},{"featureType":"landscape.natural.terrain","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"poi.park","elementType":"geometry.fill","stylers":[{"color":"#bae5ce"},{"visibility":"on"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45},{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#fac9a9"},{"visibility":"simplified"}]},{"featureType":"road.highway","elementType":"labels.text","stylers":[{"color":"#4e4e4e"}]},{"featureType":"road.arterial","elementType":"labels.text.fill","stylers":[{"color":"#787878"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"transit.station.airport","elementType":"labels.icon","stylers":[{"hue":"#0a00ff"},{"saturation":"-77"},{"gamma":"0.57"},{"lightness":"0"}]},{"featureType":"transit.station.rail","elementType":"labels.text.fill","stylers":[{"color":"#43321e"}]},{"featureType":"transit.station.rail","elementType":"labels.icon","stylers":[{"hue":"#ff6c00"},{"lightness":"4"},{"gamma":"0.75"},{"saturation":"-68"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#eaf6f8"},{"visibility":"on"}]},{"featureType":"water","elementType":"geometry.fill","stylers":[{"color":"#c7eced"}]},{"featureType":"water","elementType":"labels.text.fill","stylers":[{"lightness":"-49"},{"saturation":"-53"},{"gamma":"0.79"}]}];
-const mapStyles = {
-	width: '50vw',
-	height: '100vh',
-	position: 'fixed'
-}
 
 class Destination extends React.Component{
 	constructor(props){
@@ -25,12 +20,14 @@ class Destination extends React.Component{
 			mapCenter: {},
 			mapZoom: 13,
 			currentMarker: '',
+			fullView: true,
 			restos: []
 		};
 		this.onMarkerClick = this.onMarkerClick.bind(this);
 		this.onClose = this.onClose.bind(this);
 		this.zoomToMarker = this.zoomToMarker.bind(this);
 		this.zoomToDefault = this.zoomToDefault.bind(this);
+		this.toggleView = this.toggleView.bind(this);
 	}
 
 	onMarkerClick = (props, marker, e) => {
@@ -39,6 +36,10 @@ class Destination extends React.Component{
 			activeMarker: marker,
 			showingInfoWindow: true
 		});
+	}
+
+	toggleView = () => {
+		this.setState({fullView: !this.state.fullView});
 	}
 
 	onClose = props => {
@@ -89,6 +90,11 @@ class Destination extends React.Component{
 	}
 
 	render(){
+		const mapStyles = {
+			width: (this.state.fullView) ? '100vw' : '50vw',
+			height: '100vh',
+			position: 'fixed'
+		}
 		const icon_black = {
 			url: "https://firebasestorage.googleapis.com/v0/b/disver-e3684.appspot.com/o/black-marker.png?alt=media&token=10329174-cc3b-4dea-8b34-348bf97033b3",
 			scaledSize: new this.props.google.maps.Size(18, 24),
@@ -141,6 +147,7 @@ class Destination extends React.Component{
 					styles={snazzy}
 					initialCenter={{lat: 40.737355, lng: -73.992580}}
 					center={this.state.mapCenter}
+					disableDefaultUI="true"
 				>
 					
 					{ markers }
@@ -162,6 +169,10 @@ class Destination extends React.Component{
 						{ restos }
 					</ul>
 				</div>
+
+				<a href="#!" onClick={() => this.toggleView()} className="toggle-btn">
+					{(this.state.fullView) ? 'Show list' : 'Hide list'}
+				</a>
 			</div>
 		);
 	}

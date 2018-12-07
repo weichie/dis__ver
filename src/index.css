@@ -50,14 +50,6 @@ a{
 	text-transform: uppercase;
 }
 .main-nav a:hover{
-	background: #fff;
-	color: #111;
-}
-.main-nav a:last-child{
-	color: #111;
-	background: #fff;
-}
-.main-nav a:last-child:hover{
 	background: #ec1f48;
 	color: #fff;
 }

@@ -74,15 +74,15 @@ class AppRouter extends React.Component{
 			<Router>
 				<div className="app">
 					<Login login={this.login} logout={this.logout} currentLogged={this.state.user} />
-					
+
 					<div className="openMenu" onClick={() => this.handleMenu()}>menu</div>
 
 					<nav className={(this.state.menuOpen) ? 'main-nav open' : 'main-nav'}>
 						{(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? <Link onClick={()=>this.hideMenu()} className="dark-link" to="/add-city">ADD</Link> : ''}
 						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/">Home</Link>
+						<Link onClick={()=>this.hideMenu()} to="/discover/">Discover</Link>
 						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/destinations/">Destination</Link>
 						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/about">About</Link>
-						<Link onClick={()=>this.hideMenu()} to="/discover/">Discover</Link>
 					</nav>
 
 					<Switch>
