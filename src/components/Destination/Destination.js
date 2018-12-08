@@ -73,6 +73,23 @@ class Destination extends React.Component{
 			}
 			this.setState({restos: newState});
 		});
+
+		navigator.geolocation.getCurrentPosition(
+			(position) => {
+				console.log(position);
+				this.setState({
+					curLat: position.coords.latitude,
+					curLon: position.coords.longitude,
+					error: null,
+				});
+			},
+			(error) => this.setState({ error: error.message }),
+			{
+				enableHighAccuracy: false, 
+				timeout: 200000, 
+				maximumAge: 1000
+			},
+     );
 	}
 
 	zoomToMarker(latln, lonln, markerId){
@@ -102,6 +119,10 @@ class Destination extends React.Component{
 		const icon_red = {
 			url: "https://firebasestorage.googleapis.com/v0/b/disver-e3684.appspot.com/o/red-marker.png?alt=media&token=841c9a0f-fcef-4b6d-9de6-0d77cc7da392",
 			scaledSize: new this.props.google.maps.Size(18, 24),
+		};
+		const current_icon = {
+			url: "https://firebasestorage.googleapis.com/v0/b/disver-e3684.appspot.com/o/current_location.png?alt=media&token=dca6608f-e817-4d9f-be4e-5f782dd6664f",
+			scaledSize: new this.props.google.maps.Size(10, 10),
 		};
 		
 		const markers = this.state.restos.map(resto => {
@@ -151,6 +172,13 @@ class Destination extends React.Component{
 				>
 					
 					{ markers }
+
+					<Marker 
+						key="currentLocation"
+						keyProp="currentLocation"
+						icon={current_icon}
+						position={{lat:this.state.curLat,lng:this.state.curLon}}
+					/>
 
 					<InfoWindow 
 						marker={this.state.activeMarker}
