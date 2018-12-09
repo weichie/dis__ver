@@ -6,7 +6,10 @@ import './EditCity.css';
 class EditCity extends React.Component{
 	constructor(props){
 		super(props);
-		this.state = {city: {}};
+		this.state = {
+			city: {},
+			updated: false
+		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 	}
@@ -25,7 +28,7 @@ class EditCity extends React.Component{
 	}
 
 	componentWillUnmount(){
-		firebase.removeBinding(this.itemsRef)
+		firebase.removeBinding(this.itemRef)
 	}
 
 	handleChange(e){
@@ -44,6 +47,7 @@ class EditCity extends React.Component{
 				...this.state.city
 			}
 		});
+		this.setState({updated: true});
 	}
 
 	render(){
