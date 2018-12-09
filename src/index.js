@@ -13,6 +13,7 @@ import Resto 			from './components/Resto/Resto';
 import AddCity 		from './components/AddCity/AddCity';
 import AddResto 		from './components/AddResto/AddResto';
 import Login 			from './components/Login/Login';
+import EditCity 		from './components/EditCity/EditCity';
 
 class AppRouter extends React.Component{
 	constructor(props){
@@ -93,6 +94,7 @@ class AppRouter extends React.Component{
 						<Route path="/add-resto" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddResto : Home} />
 						<Route path="/discover" component={Discover} />
 						<Route path="/resto" component={Resto} />
+						<Route path="/edit-city/:id" component={EditCity} />
 						<Route path="/add-city" component={AddCity} />
 						<Route component={NoMatch} />
 					</Switch>

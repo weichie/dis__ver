@@ -86,6 +86,7 @@ class AddCity extends React.Component{
 									<img src={city.cover} alt={city.name} />
 									<h3>{city.name} <a href="#!" onClick={() => this.removeCity(city.id)}><i className="fa fa-times"></i></a></h3>
 									<p>{city.info}</p>
+									<Link className="edit-link" to={`/edit-city/${city.id}`}>Edit City</Link>
 								</li>
 							);
 						})}
