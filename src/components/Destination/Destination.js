@@ -52,6 +52,22 @@ class Destination extends React.Component{
 	};
 
 	componentDidMount(){
+		navigator.geolocation.getCurrentPosition(
+			(position) => {
+				this.setState({
+					curLat: position.coords.latitude,
+					curLon: position.coords.longitude,
+					error: null,
+				});
+			},
+			(error) => this.setState({ error: error.message }),
+			{
+				enableHighAccuracy: false, 
+				timeout: 200000, 
+				maximumAge: 1000
+			},
+		);
+
 		const itemsRef = firebase.database().ref('restos');
 		itemsRef.on('value', snapshot => {
 			let restos = snapshot.val();
@@ -73,23 +89,6 @@ class Destination extends React.Component{
 			}
 			this.setState({restos: newState});
 		});
-
-		navigator.geolocation.getCurrentPosition(
-			(position) => {
-				console.log(position);
-				this.setState({
-					curLat: position.coords.latitude,
-					curLon: position.coords.longitude,
-					error: null,
-				});
-			},
-			(error) => this.setState({ error: error.message }),
-			{
-				enableHighAccuracy: false, 
-				timeout: 200000, 
-				maximumAge: 1000
-			},
-     );
 	}
 
 	zoomToMarker(latln, lonln, markerId){
@@ -133,7 +132,8 @@ class Destination extends React.Component{
 					onClick={this.onMarkerClick} 
 					name={resto.name} 
 					icon={(resto.id === this.state.currentMarker) ? icon_black : icon_red}
-					description={resto.info}
+					cover={resto.cover}
+					type={resto.type}
 					position={{ lat: resto.latln, lng: resto.lonln }}
 				/>
 			);
@@ -174,6 +174,7 @@ class Destination extends React.Component{
 					{ markers }
 
 					<Marker 
+						className="test"
 						key="currentLocation"
 						keyProp="currentLocation"
 						icon={current_icon}
@@ -185,9 +186,9 @@ class Destination extends React.Component{
 						visible={this.state.showingInfoWindow}
 						onClose={this.onClose}
 					>
-						<div>
+						<div className="info-modal">
 							<h4>{this.state.selectedPlace.name}</h4>
-							<p>{this.state.selectedPlace.description}</p>
+							<p>{this.state.selectedPlace.type}</p>
 						</div>
 					</InfoWindow>
 				</Map>

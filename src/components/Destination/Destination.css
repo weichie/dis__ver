@@ -48,7 +48,6 @@
 	color: #999;
 }
 a.toggle-btn{
-	border: 2px solid red;
 	position: fixed;
 	top: 10px; left: 10px;
 	display: inline-block;
@@ -59,6 +58,18 @@ a.toggle-btn{
 	color: #fff;
 	font-size: 12px;
 	z-index: 999;
+}
+.info-modal{
+	text-align: center;
+}
+.info-modal h4{
+	font-size: 22px;
+	max-width: 200px;
+	line-height: 28px;
+}
+.info-modal p{
+	font-size: 14px;
+	max-width: 200px;
 }
 @media (max-width: 1080px){
 	.resto-cover-list li{
