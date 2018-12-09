@@ -6,7 +6,7 @@ import './EditCity.css';
 class EditCity extends React.Component{
 	constructor(props){
 		super(props);
-		this.state = {city: {}}
+		this.state = {city: {}};
 	}
 	componentDidMount(){
 		const {match: {params}} = this.props;
@@ -23,9 +23,19 @@ class EditCity extends React.Component{
 
 	render(){
 		const city = (this.state.city) ? `Edit: ${this.state.city.name}` : 'City does not exist...';
+		const renderInputs = Object.keys(this.state.city).map((item, i) => {
+			return(
+				<div className="edit-row">
+					<label for={`edit-${i}`}>{item}</label>
+					<input key={i} id={`edit-${i}`} type="text" placeholder={item} value={this.state.city[item]} />
+				</div>
+			);
+		});
+
 		return(
 			<div className="edit-wrapper">
 				<h1>{city}</h1>
+				{renderInputs}
 			</div>
 		);
 	}
