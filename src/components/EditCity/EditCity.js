@@ -7,7 +7,10 @@ class EditCity extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {city: {}};
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
+
 	componentDidMount(){
 		const {match: {params}} = this.props;
 		const itemRef = firebase.database().ref(`/cities/${params.id}`);
@@ -21,13 +24,42 @@ class EditCity extends React.Component{
 		}
 	}
 
+	componentWillUnmount(){
+		firebase.removeBinding(this.itemsRef)
+	}
+
+	handleChange(e){
+		let city = {...this.state.city};
+		const key = e.target.name;
+		city[key] = e.target.value;
+		this.setState({city});
+	}
+
+	handleSubmit(e){
+		e.preventDefault();
+		const {match: {params}} = this.props;
+		const itemsRef = firebase.database().ref('cities');
+		itemsRef.update({
+			[params.id]: {
+				...this.state.city
+			}
+		});
+	}
+
 	render(){
 		const city = (this.state.city) ? `Edit: ${this.state.city.name}` : 'City does not exist...';
 		const renderInputs = Object.keys(this.state.city).map((item, i) => {
 			return(
-				<div className="edit-row">
-					<label for={`edit-${i}`}>{item}</label>
-					<input key={i} id={`edit-${i}`} type="text" placeholder={item} value={this.state.city[item]} />
+				<div key={i} className="edit-row">
+					<label htmlFor={`edit-${i}`}>{item}</label>
+					<input 
+						id={`edit-${i}`} 
+						name={item} 
+						type="text" 
+						placeholder={item} 
+						defaultValue={this.state.city[item]} 
+						onChange={this.handleChange}
+					/>
 				</div>
 			);
 		});
@@ -35,7 +67,10 @@ class EditCity extends React.Component{
 		return(
 			<div className="edit-wrapper">
 				<h1>{city}</h1>
-				{renderInputs}
+				<form onSubmit={this.handleSubmit}>
+					{renderInputs}
+					<button className="add-btn">Update City</button>
+				</form>
 			</div>
 		);
 	}
