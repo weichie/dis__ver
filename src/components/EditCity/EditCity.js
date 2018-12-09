@@ -27,10 +27,6 @@ class EditCity extends React.Component{
 		}
 	}
 
-	componentWillUnmount(){
-		firebase.removeBinding(this.itemRef)
-	}
-
 	handleChange(e){
 		let city = {...this.state.city};
 		const key = e.target.name;
@@ -43,11 +39,12 @@ class EditCity extends React.Component{
 		const {match: {params}} = this.props;
 		const itemsRef = firebase.database().ref('cities');
 		itemsRef.update({
-			[params.id]: {
-				...this.state.city
-			}
+			[params.id]: {...this.state.city}
 		});
 		this.setState({updated: true});
+		setTimeout(() => {
+			this.setState({updated: false});
+		}, 1000);
 	}
 
 	render(){
@@ -68,12 +65,16 @@ class EditCity extends React.Component{
 			);
 		});
 
+		const updateState = (this.state.updated) ? <span className="update-state">Updated!</span> : '';
+
 		return(
 			<div className="edit-wrapper">
 				<h1>{city}</h1>
+				{updateState}
 				<form onSubmit={this.handleSubmit}>
 					{renderInputs}
 					<button className="add-btn">Update City</button>
+					<Link className="cancel-button" to="/add-city">Cancel</Link>
 				</form>
 			</div>
 		);

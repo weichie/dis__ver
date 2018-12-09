@@ -28,3 +28,16 @@
 .edit-row input:focus{
 	border-bottom: 1px solid #000;
 }
+span.update-state{
+	display: block;
+	color: green;
+	font-weight: 700;
+	font-size: 20px;
+	margin-bottom: 25px;
+}
+.cancel-button{
+	display: inline-block;
+	padding: 10px;
+	margin-left: 20px;
+	color: #ec1f48;
+}
