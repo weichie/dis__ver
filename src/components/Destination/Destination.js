@@ -134,6 +134,7 @@ class Destination extends React.Component{
 					icon={(resto.id === this.state.currentMarker) ? icon_black : icon_red}
 					cover={resto.cover}
 					type={resto.type}
+					slug={resto.slug}
 					position={{ lat: resto.latln, lng: resto.lonln }}
 				/>
 			);
@@ -187,6 +188,7 @@ class Destination extends React.Component{
 						onClose={this.onClose}
 					>
 						<div className="info-modal">
+							<img src={this.state.selectedPlace.cover} alt={this.state.selectedPlace.name} />
 							<h4>{this.state.selectedPlace.name}</h4>
 							<p>{this.state.selectedPlace.type}</p>
 						</div>

@@ -62,6 +62,11 @@ a.toggle-btn{
 .info-modal{
 	text-align: center;
 }
+.info-modal img{
+	width: auto; height: auto;
+	max-width: 200px !important;
+	max-height: 200px !important;
+}
 .info-modal h4{
 	font-size: 22px;
 	max-width: 200px;
