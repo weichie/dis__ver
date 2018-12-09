@@ -114,6 +114,7 @@ class AddResto extends React.Component{
 									<h3>{resto.name} <a href="#!" onClick={() => this.removeResto(resto.id)}><i className="fa fa-times"></i></a></h3>
 									<small>{resto.latln} | {resto.lonln} | {resto.location} | cityId: {resto.city}</small>
 									<p>{resto.info}</p>
+									<Link className="edit-link" to={`/edit-resto/${resto.id}`}>Edit Resto</Link>
 								</li>
 							);
 						})}

@@ -1,6 +1,6 @@
 .edit-wrapper{
 	width: 600px;
-	margin: 50px auto;
+	margin: 50px auto 150px auto;
 }
 .edit-wrapper h1{
 	margin-bottom: 25px;
@@ -17,17 +17,20 @@
 	color: #999;
 	margin-bottom: 5px;
 }
-.edit-row input{
+.edit-row input,
+.edit-row textarea{
 	border: 1px solid #e5e5e5;
 	display: block;
 	width: 100%;
 	padding: 10px;
 	outline: none;
 	transition: all .3s ease;
+	resize: none;
 }
 .edit-row input:focus{
 	border-bottom: 1px solid #000;
 }
+
 span.update-state{
 	display: block;
 	color: green;

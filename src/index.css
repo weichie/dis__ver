@@ -9,8 +9,6 @@ body{
 	font-family: brandon-grotesque, sans-serif;
 }
 
-.app 	{height: 100vh;}
-
 .dark-filter{
 	position: absolute;
 	top: 0; right: 0;

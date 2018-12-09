@@ -169,7 +169,7 @@ class Destination extends React.Component{
 					styles={snazzy}
 					initialCenter={{lat: 40.737355, lng: -73.992580}}
 					center={this.state.mapCenter}
-					disableDefaultUI="true"
+					disableDefaultUI={true}
 				>
 					
 					{ markers }

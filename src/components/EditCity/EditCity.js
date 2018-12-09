@@ -23,7 +23,7 @@ class EditCity extends React.Component{
 				this.setState({city});
 			});
 		}else{
-			this.setState({city: 'none'});
+			this.setState({city: null});
 		}
 	}
 
@@ -53,14 +53,26 @@ class EditCity extends React.Component{
 			return(
 				<div key={i} className="edit-row">
 					<label htmlFor={`edit-${i}`}>{item}</label>
-					<input 
-						id={`edit-${i}`} 
-						name={item} 
-						type="text" 
-						placeholder={item} 
-						defaultValue={this.state.city[item]} 
-						onChange={this.handleChange}
-					/>
+					{(item !== 'info') ? 
+						<input 
+							id={`edit-${i}`} 
+							name={item} 
+							type="text" 
+							placeholder={item} 
+							defaultValue={this.state.city[item]} 
+							onChange={this.handleChange}
+						/>
+					:
+						<textarea 
+							rows="5"
+							id={`edit-${i}`} 
+							name={item} 
+							type="text" 
+							placeholder={item} 
+							defaultValue={this.state.city[item]} 
+							onChange={this.handleChange}
+						></textarea>
+					}
 				</div>
 			);
 		});
