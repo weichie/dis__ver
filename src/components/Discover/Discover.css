@@ -9,6 +9,7 @@
 	.discover-wrapper{
 		height: 100%;
 		position: relative;
+		background: #000 !important;
 		padding-bottom: 100px;
 	}
 	.discover-wrapper .dark-filter{

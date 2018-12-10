@@ -108,6 +108,7 @@ ul.resto-list li a{
 	.discover--info{
 		width: 95%;
 		max-width: 450px;
+		margin-top: 35px;
 	}
 	ul.resto-list{
 		margin-top: 50px;
