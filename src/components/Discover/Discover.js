@@ -99,6 +99,11 @@ class Discover extends React.Component{
 						restos={this.state.restos}
 					/>
 				}
+				<Sidenav 
+					cities={this.state.cities} 
+					current={this.state.currentCity} 
+					currentHandler={this.updateCurrent} 
+				/>
 			</div>
 		);
 	}

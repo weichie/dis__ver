@@ -3,6 +3,7 @@
 	top: 50%; left: 25px;
 	transform: translateY(-50%);
 }
+.sidenav:last-child 		{display: none;}
 .sidenav ul{
 	list-style-type: none;
 }
@@ -75,6 +76,7 @@
 		width: 100%;
 		transform: translateY(0);
 	}
+	.sidenav:last-child 		{display: block;}
 	.sidenav ul{
 		text-align: center;
 	}
@@ -102,4 +104,13 @@
 		opacity: 1;
 		transform: translate(-50%, 0);
 	}
+}
+
+@media (max-width: 450px){
+	.sidenav li{margin-right: 15px;}
+	.sidenav a{
+		width: 40px;
+		height: 40px;
+	}
+	.sidenav a:before 	{width: 55px;}
 }

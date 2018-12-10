@@ -100,8 +100,23 @@ ul.resto-list li a{
 		min-height: 0;
 		flex-direction: column;
 	}
+	.discover--list{
+		margin-left: 0;
+		width: 95%;
+		max-width: 450px;
+	}
+	.discover--info{
+		width: 95%;
+		max-width: 450px;
+	}
 	ul.resto-list{
-		border: 2px solid lime;
+		margin-top: 50px;
 		flex-direction: column;
+		padding: 0;
+	}
+	ul.resto-list li{
+		margin-right: 0;
+		margin-bottom: 50px;
+		width: 100%;
 	}
 }
