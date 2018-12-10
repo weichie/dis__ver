@@ -1,5 +1,4 @@
 import React from 'react';
-import firebase from '../../../firebase.js';
 import { BrowserRouter as Route, Link } from "react-router-dom";
 
 import './Main.css';
@@ -13,7 +12,7 @@ class Main extends React.Component{
 					<Link 
 						to={{
 							pathname: '/resto/' + resto.slug, 
-							state: { current_resto: resto}
+							state: { current_resto: resto }
 						}}>
 						<div className="content-panel">
 							<small>{resto.location}</small>

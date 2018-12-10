@@ -5,6 +5,7 @@ import './Resto.css';
 class Resto extends React.Component{
 	render(){
 		const resto = this.props.location.state.current_resto;
+		
 		return(
 			<div className="resto-wrapper">
 				<div className="resto--cover" style={{backgroundImage: `url('${resto.cover}')`}}>

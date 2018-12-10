@@ -12,6 +12,16 @@
 .resto--info{
 	flex: 1;
 }
+.resto--info h4{
+	color: #ec1f48;
+}
 .resto--info h4:after{
 	content: none;
+}
+.resto--info h1{
+	margin-bottom: 5px;
+}
+.resto--info small{
+	display: block;
+	margin-bottom: 35px;
 }

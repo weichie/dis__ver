@@ -27,7 +27,8 @@
 	transition: all .3s ease;
 	resize: none;
 }
-.edit-row input:focus{
+.edit-row input:focus,
+.edit-row textarea:focus{
 	border-bottom: 1px solid #000;
 }
 

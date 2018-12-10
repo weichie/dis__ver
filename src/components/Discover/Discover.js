@@ -16,12 +16,13 @@ class Discover extends React.Component{
 		this.updateCurrent = this.updateCurrent.bind(this);
 	}
 
-	updateCurrent(id, cover, name, info){
+	updateCurrent(id, cover, name, info, type){
 		this.setState({
 			currentCity: id,
 			currentCover: cover,
 			currentName: name,
-			currentInfo: info
+			currentInfo: info,
+			currentType: type
 		});
 	}
 
@@ -37,14 +38,16 @@ class Discover extends React.Component{
 					id: cities[city].cityId,
 					name: cities[city].name,
 					info: cities[city].info,
-					cover: cities[city].cover
+					cover: cities[city].cover,
+					type: cities[city].type
 				});
 				if(counter === 0){
 					this.setState({
 						currentCity: cities[city].cityId,
 						currentName: cities[city].name,
 						currentCover: cities[city].cover,
-						currentInfo: cities[city].info
+						currentInfo: cities[city].info,
+						currentType: cities[city].type
 					});
 				}
 				counter++;
@@ -68,6 +71,7 @@ class Discover extends React.Component{
 					location: restos[resto].location,
 					latln: restos[resto].latln,
 					lonln: restos[resto].lonln,
+					type: restos[resto].type,
 					address: restos[resto].address,
 				});
 			}
@@ -91,6 +95,7 @@ class Discover extends React.Component{
 						current_id={this.state.currentCity}
 						current_name={this.state.currentName}
 						current_info={this.state.currentInfo}
+						current_type={this.state.currentType}
 						restos={this.state.restos}
 					/>
 				}

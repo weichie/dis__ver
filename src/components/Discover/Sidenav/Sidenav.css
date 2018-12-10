@@ -66,3 +66,40 @@
 	opacity: 1;
 	transform: translate(35px, -50%);	
 }
+
+@media (max-width: 980px){
+	.sidenav{
+		padding: 25px 0;
+		position: relative;
+		top: 0; left: 0;
+		width: 100%;
+		transform: translateY(0);
+	}
+	.sidenav ul{
+		text-align: center;
+	}
+	.sidenav li{
+		display: inline-block;
+		margin-bottom: 0;
+		margin-right: 35px;
+	}
+	.sidenav li:last-child{
+		margin-right: 0;
+	}
+	.sidenav a:before{
+		content: '';
+		position: absolute;
+		left: 50%; top: 50%;
+		height: 1px;
+		width: 85px;
+		transform: translate(0, -50%);
+	}
+	.sidenav span.city-name{
+		top: 100%; left: 50%;
+		transform: translate(-50%,-100%);
+	}
+	.sidenav a:hover span.city-name{
+		opacity: 1;
+		transform: translate(-50%, 0);
+	}
+}

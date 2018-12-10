@@ -82,3 +82,26 @@ ul.resto-list li a{
 	margin: 5px 0;
 	display: block;
 }
+
+@media (max-width: 1200px){
+	.discover-main-wrapper{
+		left: 150px;
+		width: calc(100% - 150px);
+	}
+	.discover--info 		{width: 300px;}
+}
+@media (max-width: 980px){
+	.discover-main-wrapper{
+		left: 0;
+		width: 100%;
+		position: static;
+		transform: translateY(0);
+		height: auto;
+		min-height: 0;
+		flex-direction: column;
+	}
+	ul.resto-list{
+		border: 2px solid lime;
+		flex-direction: column;
+	}
+}
