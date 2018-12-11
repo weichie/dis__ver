@@ -23,7 +23,7 @@ class AddCity extends React.Component{
 		this.handleSubmit = this.handleSubmit.bind(this);
 	}
 
-	handleUploadStart = () => {
+	handleUploadStart = (e) => {
 		this.setState({
 			isUploading: true,
 			progress: 0
@@ -128,12 +128,10 @@ class AddCity extends React.Component{
 				<div className="addright">
 					<h1>Add City</h1>
 					<form onSubmit={this.handleSubmit}>
-						<label>Cover:</label>
-						{this.state.isUploading && <p>Progress: {this.state.progress}</p>}
-						{this.state.avatarUrl && <img src={this.state.avatarUrl} />}
 						<FileUploader
 							accept="image/*"
-							name="avatar"
+							id="cover"
+							name="cover"
 							randomizeFilename
 							storageRef={firebase.storage().ref("cities")}
 							onUploadStart={this.handleUploadStart}
@@ -141,8 +139,12 @@ class AddCity extends React.Component{
 							onUploadSuccess={this.handleUploadSuccess}
 							onProgress={this.handleProgress}
 						/>
+						<label htmlFor="cover">Choose a file</label>
 
-						<input className="form-input" type="text" name="coverUrl" onChange={this.handleChange} value={this.state.coverUrl} placeholder="Upload Image" />
+						{this.state.isUploading && <p>Progress: {this.state.progress}</p>}
+						{this.state.coverUrl && <img className="uploadPreview" src={this.state.coverUrl} />}
+
+						<input className="form-input" type="hidden" name="coverUrl" onChange={this.handleChange} value={this.state.coverUrl} placeholder="Upload Image" />
 						<input className="form-input" type="text" name="name" onChange={this.handleChange} value={this.state.name} placeholder="City Name" />
 						<textarea className="form-input" name="info" rows="5" onChange={this.handleChange} value={this.state.info} placeholder="City description"></textarea>					
 						<button className="add-btn">Add City</button>

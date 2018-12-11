@@ -38,14 +38,14 @@ class Discover extends React.Component{
 					id: cities[city].cityId,
 					name: cities[city].name,
 					info: cities[city].info,
-					cover: cities[city].cover,
+					cover: cities[city].coverUrl,
 					type: cities[city].type
 				});
 				if(counter === 0){
 					this.setState({
 						currentCity: cities[city].cityId,
 						currentName: cities[city].name,
-						currentCover: cities[city].cover,
+						currentCover: cities[city].coverUrl,
 						currentInfo: cities[city].info,
 						currentType: cities[city].type
 					});

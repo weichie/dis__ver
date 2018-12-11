@@ -54,6 +54,33 @@
 .form-input:focus{
 	border-bottom: 1px solid #000;
 }
+img.uploadPreview{
+	width: 100%;
+	height: auto;
+}
+input[type="file"]{
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+input[type="file"] + label {
+	color: white;
+	background: #317589;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	padding: 10px 15px;
+	transition: background .3s ease;
+	margin-bottom: 15px;
+}
+
+input[type="file"]:focus + label,
+input[type="file"] + label:hover {
+	background: #111619;
+}
 .add-btn{
 	border: 1px solid #111619;
 	background: #111619;
