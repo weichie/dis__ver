@@ -76,7 +76,7 @@ class Destination extends React.Component{
 				newState.push({
 					id: resto,
 					slug: restos[resto].slug,
-					cover: restos[resto].cover,
+					cover: restos[resto].coverUrl,
 					name: restos[resto].name,
 					info: restos[resto].info,
 					city: restos[resto].city,

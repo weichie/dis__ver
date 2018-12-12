@@ -8,7 +8,7 @@ class Main extends React.Component{
 	render(){
 		const restos = this.props.restos.map(resto => {
 			if (resto.city === this.props.current_id) {
-				return <li key={resto.id} style={{backgroundImage: `url(${resto.cover})`}}>
+				return <li key={resto.id} style={{backgroundImage: `url(${resto.coverUrl})`}}>
 					<Link 
 						to={{
 							pathname: '/resto/' + resto.slug, 

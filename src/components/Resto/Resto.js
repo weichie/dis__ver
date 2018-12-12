@@ -18,7 +18,7 @@ class Resto extends React.Component{
 
 		return(
 			<div className="resto-wrapper">
-				<div className="resto--cover" style={{backgroundImage: `url('${resto.cover}')`}}>
+				<div className="resto--cover" style={{backgroundImage: `url('${resto.coverUrl}')`}}>
 					
 				</div>
 				<div className="about-info resto--info">

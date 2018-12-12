@@ -16,10 +16,10 @@ class Discover extends React.Component{
 		this.updateCurrent = this.updateCurrent.bind(this);
 	}
 
-	updateCurrent(id, cover, name, info, type){
+	updateCurrent(id, coverUrl, name, info, type){
 		this.setState({
 			currentCity: id,
-			currentCover: cover,
+			currentCover: coverUrl,
 			currentName: name,
 			currentInfo: info,
 			currentType: type
@@ -64,7 +64,7 @@ class Discover extends React.Component{
 				restoState.push({
 					id: resto,
 					slug: restos[resto].slug,
-					cover: restos[resto].cover,
+					coverUrl: restos[resto].coverUrl,
 					name: restos[resto].name,
 					info: restos[resto].info,
 					city: restos[resto].city,
