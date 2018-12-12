@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from '../../firebase.js';
-import FileUploader from "react-firebase-file-uploader";
+import FileUploader from 'react-firebase-file-uploader';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import './AddCity.css';

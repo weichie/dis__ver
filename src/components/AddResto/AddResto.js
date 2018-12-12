@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from '../../firebase.js';
+import FileUploader from 'react-firebase-file-uploader';
 import { BrowserRouter as Router, Link } from "react-router-dom";
 
 import './AddResto.css';
@@ -20,10 +21,43 @@ class AddResto extends React.Component{
 			latln: '',
 			type: '',
 			lonln: '',
+			isUploading: false,
+			progress: 0,
+			coverUrl: '',
 			restos: []
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+	}
+
+	handleUploadStart = e => {
+		this.setState({
+			isUploading: true,
+			progress: 0
+		});
+	}
+
+	handleProgress = progress => {
+		this.setState({progress});
+	}
+
+	handleUploadError = error => {
+		this.setState({isUploading: false});
+		console.error(error);
+	}
+
+	handleUploadSuccess = filename => {
+		this.setState({
+			cover: filename,
+			progress: 100,
+			isUploading: false
+		});
+		firebase
+			.storage()
+			.ref('restos')
+			.child(filename)
+			.getDownloadURL()
+			.then(url => this.setState({coverUrl: url}));
 	}
 
 	handleChange(e){
@@ -38,7 +72,7 @@ class AddResto extends React.Component{
 
 		const resto = {
 			slug: this.state.slug,
-			cover: this.state.cover,
+			coverUrl: this.state.coverUrl,
 			name: this.state.name,
 			info: this.state.info,
 			address: this.state.address,
@@ -51,7 +85,7 @@ class AddResto extends React.Component{
 		itemsRef.push(resto);
 		this.setState({
 			slug: '',
-			cover: '',
+			coverUrl: '',
 			name: '',
 			info: '',
 			city: '',
@@ -73,7 +107,7 @@ class AddResto extends React.Component{
 				newState.push({
 					id: resto,
 					slug: restos[resto].slug,
-					cover: restos[resto].cover,
+					cover: restos[resto].coverUrl,
 					name: restos[resto].name,
 					info: restos[resto].info,
 					city: restos[resto].city,
@@ -97,7 +131,6 @@ class AddResto extends React.Component{
 	}
 
 	removeResto(id){
-		console.log(id);
 		const itemRef = firebase.database().ref(`/restos/${id}`);
 		itemRef.remove();
 	}
@@ -123,13 +156,28 @@ class AddResto extends React.Component{
 				<div className="addright">
 					<h1>Add Resto</h1>
 					<form onSubmit={this.handleSubmit}>
+						<FileUploader 
+							accept="image/*"
+							id="cover"
+							name="cover"
+							randomizeFilename
+							storageRef={firebase.storage().ref('restos')}
+							onUploadStart={this.handleUploadStart}
+							onUploadError={this.handleUploadError}
+							onUploadSuccess={this.handleUploadSuccess}
+							onProgress={this.handleProgress}
+						/>
+						<label htmlFor="cover">Choose a file</label>
+						{this.state.isUploading && <p>Progress: <span>{this.state.progress}</span></p>}
+						{this.state.coverUrl && <img className="uploadPreview" src={this.state.coverUrl} />}
+
 						<input className="form-input" type="text" name="slug" onChange={this.handleChange} value={this.state.slug} placeholder="Resto Slug" />
-						<input className="form-input" type="text" name="cover" onChange={this.handleChange} value={this.state.cover} placeholder="Upload Image" />
+						<input className="form-input" type="hidden" name="coverUrl" onChange={this.handleChange} value={this.state.coverUrl} placeholder="Upload Image" />
 						<input className="form-input" type="text" name="name" onChange={this.handleChange} value={this.state.name} placeholder="Resto Name" />
-						<input className="form-input" type="text" name="location" onChange={this.handleChange} value={this.state.location} placeholder="Location Name" />
-						<input className="form-input" type="text" name="city" onChange={this.handleChange} value={this.state.city} placeholder="City ID" />
-						<input className="form-input" type="text" name="latln" onChange={this.handleChange} value={this.state.latln} placeholder="Latitude" />
-						<input className="form-input" type="text" name="lonln" onChange={this.handleChange} value={this.state.lonln} placeholder="Longitude" />
+						<input className="form-input half" type="text" name="city" onChange={this.handleChange} value={this.state.city} placeholder="City ID" />
+						<input className="form-input half" type="text" name="location" onChange={this.handleChange} value={this.state.location} placeholder="Location Name" />
+						<input className="form-input half" type="text" name="latln" onChange={this.handleChange} value={this.state.latln} placeholder="Latitude" />
+						<input className="form-input half" type="text" name="lonln" onChange={this.handleChange} value={this.state.lonln} placeholder="Longitude" />
 						<input className="form-input" type="text" name="address" onChange={this.handleChange} value={this.state.address} placeholder="Address" />
 						<input className="form-input" type="text" name="type" onChange={this.handleChange} value={this.state.type} placeholder="Type" />
 						<textarea className="form-input" name="info" rows="5" onChange={this.handleChange} value={this.state.info} placeholder="Resto Description"></textarea>
