@@ -1,0 +1,29 @@
+.searchform input{
+	border: 2px solid white;
+	padding: 10px;
+	display: block;
+	width: 100%;
+	border-radius: 5px;
+	appearance: none;
+	outline: none;
+}
+.searchform input:focus,
+.searchform input:active{
+	border: 2px solid #317589;
+}
+
+.searchresults{
+	margin-top: 10px;
+}
+
+.searchresults .dif-link{
+	margin: 0;
+	cursor: pointer;
+	font-weight: 700;
+}
+.searchresults strong{
+	display: block;
+}
+.searchresults strong span{
+	font-weight: 400;
+}

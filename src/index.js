@@ -75,7 +75,7 @@ class AppRouter extends React.Component{
 		return(
 			<Router>
 				<div className="app">
-
+					<Login login={this.login} logout={this.logout} currentLogged={this.state.user} />
 
 					<div className="openMenu" onClick={() => this.handleMenu()}>menu</div>
 

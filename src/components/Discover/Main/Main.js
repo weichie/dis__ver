@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Route, Link } from "react-router-dom";
 
+import Search from '../Search/Search';
 import './Main.css';
 
 
@@ -27,9 +28,19 @@ class Main extends React.Component{
 		return(
 			<div className="discover-main-wrapper">
 				<div className="discover--info">
-					<h4>Discover</h4>
-					<h1>{this.props.current_name}</h1>
-					<p>{this.props.current_info}</p>
+					{!this.props.searchActive && 
+						<div className="main-wrapper">
+							<h4>Discover</h4>
+							<h1>{this.props.current_name}</h1>
+							<p>{this.props.current_info}</p>
+						</div>
+					}
+
+					<Search 
+						searchActive={this.props.searchActive}
+						handleSearch={this.props.handleSearch} 
+						query={this.props.query}
+					/>
 				</div>
 				<div className="discover--list">
 					<ul className="resto-list">

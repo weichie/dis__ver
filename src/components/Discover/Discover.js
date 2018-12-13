@@ -11,9 +11,12 @@ class Discover extends React.Component{
 		super(props);
 		this.state = {
 			cities: [],
-			restos: []
+			restos: [],
+			searchActive: false,
+			searchTerm: ''
 		}
 		this.updateCurrent = this.updateCurrent.bind(this);
+		this.handleSearch = this.handleSearch.bind(this);
 	}
 
 	updateCurrent(id, coverUrl, name, info, type){
@@ -78,7 +81,14 @@ class Discover extends React.Component{
 			this.setState({
 				restos: restoState
 			})
-		})
+		});
+	}
+
+	handleSearch = e => {
+		this.setState({
+			searchTerm: e.target.value,
+			searchActive: (e.target.value !== '') ? true : false
+		});
 	}
 
 	render(){
@@ -97,6 +107,9 @@ class Discover extends React.Component{
 						current_info={this.state.currentInfo}
 						current_type={this.state.currentType}
 						restos={this.state.restos}
+						searchActive={this.state.searchActive}
+						handleSearch={this.handleSearch}
+						query={this.state.searchTerm}
 					/>
 				}
 				<Sidenav 

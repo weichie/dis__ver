@@ -25,6 +25,9 @@
 	font-weight: 400;
 	font-size: 20px;
 }
+.main-wrapper{
+	margin-bottom: 25px;
+}
 .discover--list{
 	flex: 1;
 	height: 100%;
