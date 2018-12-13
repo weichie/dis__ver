@@ -7,23 +7,48 @@ import './Main.css';
 
 class Main extends React.Component{
 	render(){
-		const restos = this.props.restos.map(resto => {
-			if (resto.city === this.props.current_id) {
-				return <li key={resto.id} style={{backgroundImage: `url(${resto.coverUrl})`}}>
-					<Link 
-						to={{
-							pathname: '/resto/' + resto.slug, 
-							state: { current_resto: resto }
-						}}>
-						<div className="content-panel">
-							<small>{resto.location}</small>
-							<strong>{resto.name}</strong>
-						</div>
-						<div className="bottom-gradient"></div>
-					</Link>
-				</li>
-			}
-		});
+		let restos;
+		if(this.props.searchActive){
+			restos = this.props.restos.map(resto => {
+				if(
+					resto.name.toLowerCase().indexOf(this.props.query.toLowerCase()) !== -1 ||
+					resto.info.toLowerCase().indexOf(this.props.query.toLowerCase()) !== -1 ||
+					resto.type.toLowerCase().indexOf(this.props.query.toLowerCase()) !== -1
+				){
+					return <li key={resto.id} style={{backgroundImage: `url(${resto.coverUrl})`}}>
+						<Link 
+							to={{
+								pathname: '/resto/' + resto.slug, 
+								state: { current_resto: resto }
+							}}>
+							<div className="content-panel">
+								<small>{resto.location} - {this.props.query}</small>
+								<strong>{resto.name}</strong>
+							</div>
+							<div className="bottom-gradient"></div>
+						</Link>
+					</li>
+				}
+			});
+		}else{
+			restos = this.props.restos.map(resto => {
+				if (resto.city === this.props.current_id) {
+					return <li key={resto.id} style={{backgroundImage: `url(${resto.coverUrl})`}}>
+						<Link 
+							to={{
+								pathname: '/resto/' + resto.slug, 
+								state: { current_resto: resto }
+							}}>
+							<div className="content-panel">
+								<small>{resto.location} - {this.props.query}</small>
+								<strong>{resto.name}</strong>
+							</div>
+							<div className="bottom-gradient"></div>
+						</Link>
+					</li>
+				}
+			});
+		}
 
 		return(
 			<div className="discover-main-wrapper">
@@ -39,6 +64,7 @@ class Main extends React.Component{
 					<Search 
 						searchActive={this.props.searchActive}
 						handleSearch={this.props.handleSearch} 
+						cancelSearch={this.props.cancelSearch}
 						query={this.props.query}
 					/>
 				</div>

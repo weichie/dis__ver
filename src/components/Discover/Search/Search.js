@@ -9,11 +9,12 @@ const Search = props => (
 				name="search"
 				placeholder="Seach restaurant or kitchen type..."
 				onChange={props.handleSearch}
+				value={props.query}
 			/>
 		</form>
 		{props.searchActive && 
 			<div className="searchresults">
-				<a className="dif-link">Cancel</a>
+				<a className="dif-link" onClick={props.cancelSearch}>Cancel</a>
 				<strong>Results for "<span>{props.query}</span>"</strong>
 			</div>
 		}

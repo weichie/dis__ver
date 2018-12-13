@@ -17,6 +17,7 @@ class Discover extends React.Component{
 		}
 		this.updateCurrent = this.updateCurrent.bind(this);
 		this.handleSearch = this.handleSearch.bind(this);
+		this.cancelSearch = this.cancelSearch.bind(this);
 	}
 
 	updateCurrent(id, coverUrl, name, info, type){
@@ -91,15 +92,25 @@ class Discover extends React.Component{
 		});
 	}
 
+	cancelSearch = () => {
+		this.setState({
+			searchTerm: '',
+			searchActive: false
+		});
+	}
+
 	render(){
 		return(
 			<div className="discover-wrapper" style={{backgroundImage: `url(${this.state.currentCover})`}}>
 				<div className="dark-filter med"></div>
-				<Sidenav 
-					cities={this.state.cities} 
-					current={this.state.currentCity} 
-					currentHandler={this.updateCurrent} 
-				/>
+				{!this.state.searchActive && 
+					<Sidenav 
+						cities={this.state.cities} 
+						current={this.state.currentCity} 
+						currentHandler={this.updateCurrent} 
+					/>
+				}
+
 				{this.state.currentCity &&
 					<Main 
 						current_id={this.state.currentCity}
@@ -109,14 +120,17 @@ class Discover extends React.Component{
 						restos={this.state.restos}
 						searchActive={this.state.searchActive}
 						handleSearch={this.handleSearch}
+						cancelSearch={this.cancelSearch}
 						query={this.state.searchTerm}
 					/>
 				}
-				<Sidenav 
-					cities={this.state.cities} 
-					current={this.state.currentCity} 
-					currentHandler={this.updateCurrent} 
-				/>
+				{!this.state.searchActive && 
+					<Sidenav 
+						cities={this.state.cities} 
+						current={this.state.currentCity} 
+						currentHandler={this.updateCurrent} 
+					/>
+				}
 			</div>
 		);
 	}
