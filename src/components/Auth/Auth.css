@@ -39,6 +39,16 @@
 	outline: none;
 	transition: all .3s ease;
 }
+p.error-message {
+	border-left: 5px solid #000;
+	color: #fff;
+	font-size: 14px;
+	width: 400px;
+	margin: 20px auto 0 auto;
+	line-height: 20px;
+	background: #ec1f48;
+	padding: 10px;
+}
 .login-wrapper input:focus{
 	border-bottom: 2px solid #000;
 }
