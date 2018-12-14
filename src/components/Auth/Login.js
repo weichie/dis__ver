@@ -39,19 +39,26 @@ class Login extends React.Component{
 		const {email, password, error} = this.state;
 		return(
 			<div className="login-wrapper">
-				<h1>Login</h1>
-				{error && <p className="error-message">{error.message}</p>}
-				<form className="login-form" onSubmit={this.handleSubmit}>
-					<input type="email" name="email" placeholder="email" value={email} onChange={this.handleChange} />
-					<input 
-						type="password"
-						name="password"
-						placeholer="password"
-						value={password}
-						onChange={this.handleChange}
-					/>
-					<button>Log in</button>
-				</form>
+				<div className="image-bg"></div>
+				<div className="text-section">
+					<div className="inner">
+						<h1>Login</h1>
+						<p className="intro-text">Login to access your account</p>
+						{error && <p className="error-message">{error.message}</p>}
+						<form className="login-form" onSubmit={this.handleSubmit}>
+							<input type="email" name="email" placeholder="email" value={email} onChange={this.handleChange} />
+							<input 
+								type="password"
+								name="password"
+								placeholer="password"
+								value={password}
+								onChange={this.handleChange}
+							/>
+							<button>Log in</button>
+							<p>Don't have an account yet? <Link className="login-btn" to="/register">Register here</Link></p>
+						</form>
+					</div>
+				</div>
 			</div>
 		);
 	}

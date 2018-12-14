@@ -16,6 +16,7 @@ import EditCity 		from './components/EditCity/EditCity';
 import EditResto 		from './components/EditResto/EditResto';
 import Register 		from './components/Auth/Register';
 import Login 			from './components/Auth/Login';
+import Logout 			from './components/Auth/Logout';
 
 class AppRouter extends React.Component{
 	constructor(props){
@@ -25,32 +26,32 @@ class AppRouter extends React.Component{
 			userEmail: null,
 			menuOpen: false
 		}
-		this.login = this.login.bind(this);
-		this.logout = this.logout.bind(this);
+		// this.login = this.login.bind(this);
+		// this.logout = this.logout.bind(this);
 		this.handleMenu = this.handleMenu.bind(this);
 		this.hideMenu = this.hideMenu.bind(this);
 	}
 
-	logout(){
-		auth.signOut()
-			.then(() => {
-				this.setState({
-					user: null,
-					userEmail: null
-				});
-			});
-	}
+	// logout(){
+	// 	auth.signOut()
+	// 		.then(() => {
+	// 			this.setState({
+	// 				user: null,
+	// 				userEmail: null
+	// 			});
+	// 		});
+	// }
 
-	login(){
-		auth.signInWithPopup(provider)
-			.then(result => {
-				const user = result.user;
-				this.setState({
-					user,
-					userEmail: user.email
-				});
-			});
-	}
+	// login(){
+	// 	auth.signInWithPopup(provider)
+	// 		.then(result => {
+	// 			const user = result.user;
+	// 			this.setState({
+	// 				user,
+	// 				userEmail: user.email
+	// 			});
+	// 		});
+	// }
 
 	handleMenu(){
 		this.setState({menuOpen: !this.state.menuOpen});
@@ -77,15 +78,15 @@ class AppRouter extends React.Component{
 			<Router>
 				<div className="app">
 					{!this.state.userEmail ? (
-						<div className="auth-menu">
-							<Link to="/register">Register</Link>
-							<Link to="/login">Login</Link>
-						</div>
+						<ul className="auth-menu">
+							<li><Link to="/register">Register</Link></li>
+							<li><Link to="/login">Login</Link></li>
+						</ul>
 					) : (
-						<div className="auth-menu">
-							<Link to="/profile">{this.state.userEmail}</Link>
-							<Link to="/logout">Logout</Link>
-						</div>
+						<ul className="auth-menu">
+							<li><Link to="/profile">{this.state.userEmail}</Link></li>
+							<li><Logout /></li>
+						</ul>
 					)}
 					{/*<Login login={this.login} logout={this.logout} currentLogged={this.state.user} />*/}
 
@@ -100,13 +101,12 @@ class AppRouter extends React.Component{
 					</nav>
 
 					<Switch>
-						<Route path="/register" component={Register} className="login-link" />
-						<Route path="/login" component={Login} className="login-link" />
+						<Route path="/register" component={Register} />
+						<Route path="/login" component={Login} />
 						<Route path="/" exact component={Home} />
 						<Route path="/destinations" component={Destination} />
 						<Route path="/about" component={About} />
-						<Route path="/add-city" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddCity : Home} />
-						<Route path="/add-resto" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddResto : Home} />
+						<Route path="/add-city" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddCity : Home} />						<Route path="/add-resto" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddResto : Home} />
 						<Route path="/discover" component={Discover} />
 						<Route path="/resto" component={Resto} />
 						<Route path="/edit-city/:id" component={EditCity} />

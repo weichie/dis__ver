@@ -1,0 +1,62 @@
+.login-wrapper{
+	height: 100vh;
+	display: flex;
+}
+.login-wrapper .image-bg{
+	background: url('https://firebasestorage.googleapis.com/v0/b/disver-e3684.appspot.com/o/auth_bg.jpg?alt=media&token=d80cbd39-6e25-4926-a41a-7968e68b3a59');
+	background-size: cover;
+	background-position: center;
+	width: 40%;
+}
+.login-wrapper .text-section{
+	width: 60%;
+	position: relative;
+}
+.login-wrapper .inner{
+	position: absolute;
+	top: 50%; left: 50%;
+	width: 90%;
+	z-index: 20;
+	text-align: center;
+	transform: translate(-50%,-50%);
+}
+.login-wrapper p.intro-text{
+	font-weight: 400;
+	margin: 15px auto 0 auto;
+	width: 400px;
+}
+.login-wrapper form{
+	margin: 25px auto 0 auto;
+	width: 400px;
+}
+.login-wrapper input{
+	display: block;
+	width: 100%;
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	margin-bottom: 10px;
+	outline: none;
+	transition: all .3s ease;
+}
+.login-wrapper input:focus{
+	border-bottom: 2px solid #000;
+}
+.login-wrapper button{
+	display: inline-block;
+	border: none;
+	border-radius: 0;
+	padding: 10px 25px;
+	font-size: 12px;
+	background: #111619;
+	color: #fff;
+	text-transform: uppercase;
+	cursor: pointer;
+	transition: background .3s ease;
+	margin-bottom: 20px;
+}
+.login-wrapper button:hover{
+	background: #ec1f48;
+}
+a.login-btn 		{color: #ec1f48;}
+a.login-btn:hover {color: #000;}

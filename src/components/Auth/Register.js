@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from '../../firebase.js';
 import { Link } from 'react-router-dom';
 
+import './Auth.css';
 import Login from './Login';
 
 class Register extends React.Component{
@@ -36,19 +37,30 @@ class Register extends React.Component{
 	render(){
 		const {email, password, error} = this.state;
 		return(
-			<form onSubmit={this.handleSubmit}>
-				{error && <p className="error-message">error.message</p>}
-				<input type="text" name="email" placeholder="Email" value={email} onChange={this.handleChange} />
-				<input
-					type="password"
-					name="password"
-					placeholder="Password"
-					value={password}
-					onChange={this.handleChange}
-				/>
-				<button children="Register" />
-				<p>Already have an account? <Link to="/login">Login here</Link></p>
-			</form>
+			<div className="login-wrapper">
+				<div className="image-bg"></div>
+				<div className="text-section">
+					<div className="inner">	
+						<h1>Register your account</h1>
+						<p className="intro-text">
+							Feel no longer lost in a new city! Use your friends recommendations to guide you.
+						</p>
+						{error && <p className="error-message">{error.message}</p>}
+						<form onSubmit={this.handleSubmit}>
+							<input type="text" name="email" placeholder="Your Email" value={email} onChange={this.handleChange} />
+							<input
+								type="password"
+								name="password"
+								placeholder="Password"
+								value={password}
+								onChange={this.handleChange}
+							/>
+							<button children="Get Started" />
+							<p>Already have an account? <Link className="login-btn" to="/login">Login here</Link></p>
+						</form>
+					</div>
+				</div>
+			</div>
 		);
 	}
 }

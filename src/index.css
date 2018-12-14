@@ -54,6 +54,28 @@ a{
 
 .openMenu 		{display: none;}
 
+.auth-menu{
+	position: absolute;
+	top: 0; right: 0;
+	z-index: 999;
+	list-style-type: none;
+	display: flex;
+}
+.auth-menu li:last-child{
+	border-left: 1px solid #fff;
+}
+.auth-menu a{
+	display: inline-block;
+	padding: 10px 25px;
+	color: #fff;
+	background: #000;
+	opacity: .7;
+	transition: opacity .3s ease;
+}
+.auth-menu a:hover{
+	opacity: 1;
+}
+
 @media (max-width: 980px){
 	.openMenu{
 		position: fixed;
