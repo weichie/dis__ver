@@ -22,7 +22,7 @@ class Main extends React.Component{
 								state: { current_resto: resto }
 							}}>
 							<div className="content-panel">
-								<small>{resto.location} - {this.props.query}</small>
+								<small>{resto.location} | {resto.type}</small>
 								<strong>{resto.name}</strong>
 							</div>
 							<div className="bottom-gradient"></div>
@@ -40,7 +40,7 @@ class Main extends React.Component{
 								state: { current_resto: resto }
 							}}>
 							<div className="content-panel">
-								<small>{resto.location} - {this.props.query}</small>
+								<small>{resto.location} | {resto.type}</small>
 								<strong>{resto.name}</strong>
 							</div>
 							<div className="bottom-gradient"></div>

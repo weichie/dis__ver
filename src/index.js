@@ -15,6 +15,7 @@ import AddResto 		from './components/AddResto/AddResto';
 import Login 			from './components/Login/Login';
 import EditCity 		from './components/EditCity/EditCity';
 import EditResto 		from './components/EditResto/EditResto';
+import Register 		from './components/Auth/Register';
 
 class AppRouter extends React.Component{
 	constructor(props){
@@ -75,6 +76,7 @@ class AppRouter extends React.Component{
 		return(
 			<Router>
 				<div className="app">
+					<Link to="/register">Register</Link>
 					<Login login={this.login} logout={this.logout} currentLogged={this.state.user} />
 
 					<div className="openMenu" onClick={() => this.handleMenu()}>menu</div>
@@ -88,6 +90,7 @@ class AppRouter extends React.Component{
 					</nav>
 
 					<Switch>
+						<Route path="/register" component={Register} className="login-link" />
 						<Route path="/" exact component={Home} />
 						<Route path="/destinations" component={Destination} />
 						<Route path="/about" component={About} />
