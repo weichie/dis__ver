@@ -1,0 +1,32 @@
+.profile-wrapper{
+	padding: 100px 0;
+	text-align: center;
+}
+.success-message{
+	color: green;
+	font-size: 14px;
+	font-weight: 700;
+}
+.profile-wrapper h1{
+	margin-bottom: 50px;
+}
+.profile-wrapper form{
+	max-width: 600px;
+	margin: 0 auto;
+}
+.profile-wrapper label{
+	display: block;
+	text-align: left;
+	margin-bottom: 5px;
+}
+.profile-wrapper input{
+	border: 1px solid #dedede;
+	outline: none;
+	display: block;
+	width: 100%;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+.profile-wrapper input:focus{
+	border-bottom: 1px solid #000;
+}

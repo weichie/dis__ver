@@ -52,7 +52,7 @@ p.error-message {
 .login-wrapper input:focus{
 	border-bottom: 2px solid #000;
 }
-.login-wrapper button{
+button.general-submit{
 	display: inline-block;
 	border: none;
 	border-radius: 0;
@@ -65,7 +65,7 @@ p.error-message {
 	transition: background .3s ease;
 	margin-bottom: 20px;
 }
-.login-wrapper button:hover{
+button.general-submit:hover{
 	background: #ec1f48;
 }
 a.login-btn 		{color: #ec1f48;}

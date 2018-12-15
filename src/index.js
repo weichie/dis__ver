@@ -17,6 +17,7 @@ import EditResto 		from './components/EditResto/EditResto';
 import Register 		from './components/Auth/Register';
 import Login 			from './components/Auth/Login';
 import Logout 			from './components/Auth/Logout';
+import Profile 		from './components/Profile/Profile';
 
 class AppRouter extends React.Component{
 	constructor(props){
@@ -84,7 +85,7 @@ class AppRouter extends React.Component{
 						</ul>
 					) : (
 						<ul className="auth-menu">
-							<li><Link to="/profile">{this.state.userEmail}</Link></li>
+							<li><Link to={`/profile/${this.state.user.uid}`}>Profile</Link></li>
 							<li><Logout /></li>
 						</ul>
 					)}
@@ -112,6 +113,7 @@ class AppRouter extends React.Component{
 						<Route path="/edit-city/:id" component={EditCity} />
 						<Route path="/edit-resto/:id" component={EditResto} />
 						<Route path="/add-city" component={AddCity} />
+						<Route path="/profile/:id" component={Profile} />
 						<Route component={NoMatch} />
 					</Switch>
 				</div>

@@ -27,7 +27,16 @@ class Register extends React.Component{
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then(user => {
-				this.props.history.push('/');
+				const itemsRef = firebase.database().ref('users');
+				const storeUser = {
+					email: user.user.email,
+					uid: user.user.uid
+				}
+				itemsRef.push(storeUser).then(()=>{
+					this.props.history.push('/');
+				}).catch(error => {
+					this.setState({error: error});
+				});
 			})
 			.catch(error => {
 				this.setState({error: error});
@@ -55,7 +64,7 @@ class Register extends React.Component{
 								value={password}
 								onChange={this.handleChange}
 							/>
-							<button children="Get Started" />
+							<button className="general-submit" children="Get Started" />
 							<p>Already have an account? <Link className="login-btn" to="/login">Login here</Link></p>
 						</form>
 					</div>
