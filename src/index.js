@@ -94,7 +94,7 @@ class AppRouter extends React.Component{
 					<div className="openMenu" onClick={() => this.handleMenu()}>menu</div>
 
 					<nav className={(this.state.menuOpen) ? 'main-nav open' : 'main-nav'}>
-						{(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? <Link onClick={()=>this.hideMenu()} className="dark-link" to="/add-city">ADD</Link> : ''}
+						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/add-city">ADD</Link>
 						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/">Home</Link>
 						<Link onClick={()=>this.hideMenu()} to="/discover/">Discover</Link>
 						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/destinations/">Destination</Link>
@@ -107,7 +107,8 @@ class AppRouter extends React.Component{
 						<Route path="/" exact component={Home} />
 						<Route path="/destinations" component={Destination} />
 						<Route path="/about" component={About} />
-						<Route path="/add-city" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddCity : Home} />						<Route path="/add-resto" component={(this.state.user && this.state.userEmail === 'weichler.bob@gmail.com') ? AddResto : Home} />
+						<Route path="/add-city" component={AddCity} />						
+						<Route path="/add-resto" component={AddResto} />
 						<Route path="/discover" component={Discover} />
 						<Route path="/resto" component={Resto} />
 						<Route path="/edit-city/:id" component={EditCity} />

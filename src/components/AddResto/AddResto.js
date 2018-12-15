@@ -24,7 +24,7 @@ class AddResto extends React.Component{
 			isUploading: false,
 			progress: 0,
 			coverUrl: '',
-			restos: []
+			restos: [],
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
@@ -68,6 +68,7 @@ class AddResto extends React.Component{
 
 	handleSubmit(e){
 		e.preventDefault();
+		const user = firebase.auth().currentUser;
 		const itemsRef = firebase.database().ref('restos');
 
 		const resto = {
@@ -80,7 +81,8 @@ class AddResto extends React.Component{
 			city: parseInt(this.state.city),
 			location: this.state.location,
 			latln: this.state.latln*1,
-			lonln: this.state.lonln*1 
+			lonln: this.state.lonln*1,
+			uploadedBy: (user.uid) ? user.uid : ''
 		}
 		itemsRef.push(resto);
 		this.setState({
