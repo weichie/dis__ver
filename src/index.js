@@ -94,7 +94,7 @@ class AppRouter extends React.Component{
 					<div className="openMenu" onClick={() => this.handleMenu()}>menu</div>
 
 					<nav className={(this.state.menuOpen) ? 'main-nav open' : 'main-nav'}>
-						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/add-city">ADD</Link>
+						{(this.state.user) && <Link onClick={()=>this.hideMenu()} className="dark-link" to="/add-city">ADD</Link>}
 						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/">Home</Link>
 						<Link onClick={()=>this.hideMenu()} to="/discover/">Discover</Link>
 						<Link onClick={()=>this.hideMenu()} className="dark-link" to="/destinations/">Destination</Link>
