@@ -9,6 +9,7 @@ class Register extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
+			username: '',
 			email: '',
 			password: '',
 			error: null
@@ -27,14 +28,23 @@ class Register extends React.Component{
 			.auth()
 			.createUserWithEmailAndPassword(email, password)
 			.then(user => {
-				const itemsRef = firebase.database().ref('users');
-				const storeUser = {
-					email: user.user.email,
-					uid: user.user.uid
-				}
-				itemsRef.push(storeUser).then(()=>{
-					this.props.history.push('/');
-				}).catch(error => {
+				firebase.auth().currentUser.updateProfile({
+					displayName: this.state.username
+				})
+				.then(() => {
+					const itemsRef = firebase.database().ref('users');
+					const storeUser = {
+						username: user.user.displayName,
+						email: user.user.email,
+						uid: user.user.uid,
+					}
+					itemsRef.push(storeUser).then(() => {
+						this.props.history.push('/');
+					}).catch(error => {
+						this.setState({error: error});
+					});
+				})
+				.catch(error => {
 					this.setState({error: error});
 				});
 			})
@@ -44,7 +54,7 @@ class Register extends React.Component{
 	}
 
 	render(){
-		const {email, password, error} = this.state;
+		const {email, username, password, error} = this.state;
 		return(
 			<div className="login-wrapper">
 				<div className="image-bg"></div>
@@ -56,6 +66,7 @@ class Register extends React.Component{
 						</p>
 						{error && <p className="error-message">{error.message}</p>}
 						<form onSubmit={this.handleSubmit}>
+							<input type="text" name="username" placeholder="Pick a username" value={username} onChange={this.handleChange} />
 							<input type="text" name="email" placeholder="Your Email" value={email} onChange={this.handleChange} />
 							<input
 								type="password"
